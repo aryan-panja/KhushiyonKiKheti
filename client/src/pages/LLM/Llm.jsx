@@ -22,7 +22,7 @@ const ChatComponent = () => {
       },
     });
 
-    const result = await chat.sendMessage(userInput + " and i also live in jalandhar ");
+    const result = await chat.sendMessage(userInput + " and i also live in ludhiana ");
     const responseText = await result.response.text();
     setResponse(responseText);
   };

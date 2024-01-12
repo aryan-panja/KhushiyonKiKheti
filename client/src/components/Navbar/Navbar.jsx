@@ -17,13 +17,13 @@ const Navbar = () => {
           <Link to="/cart">Shopping Cart</Link>
         </li>
         <li>
+          <Link to="/chatbot">Talk With AI</Link>
+        </li>
+        <li>
           <Link to="/login">Login</Link>
         </li>
         <li>
           <Link to="sign-up">Sign Up</Link>
-        </li>
-        <li>
-          <Link to="/chatbot">Talk With AI</Link>
         </li>
       </ul>
     </nav>
