@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins';
+    margin: 0px;
+    color : rgb(94, 94, 94)
+}
+
+.signupPage-div ,
+.loginPage-div{
+    display: flex;
+    flex-direction: column;
+    margin: 10vh 35vw;
+    padding: 5vh 5vw;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 10px 18px 0px rgba(207,191,207,1);
+    -moz-box-shadow: 0px 10px 18px 0px rgba(207,191,207,1);
+    box-shadow: 0px 10px 18px 0px rgba(207,191,207,1);
+}
+
+.signupPage-heading,
+.loginPage-heading{
+    font-size: 24px;
+    margin-bottom: 2vh;
+}
+
+.signupPage-div > input , select,
+.loginPage-div > input , select{
+    height: 6vh;
+    margin-bottom: 2vh;
+    font-size: 16px;
+    padding: 0 0.5vw;
+    border-radius: 5px;
+    border: 0.5px solid rgb(203, 201, 201) ;
+    outline: none;
+}
+
+.signupPage-div > input::placeholder,
+.loginPage-div > input::placeholder{
+    color : rgb(213, 213, 213);
+}
+
+.loginPage-div > button:hover,
+.signup-div > button:hover{
+    background-color: #2c762f;
+}

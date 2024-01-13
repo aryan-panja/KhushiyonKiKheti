@@ -1,7 +1,6 @@
 import './App.css'
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/home'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import ProductPage from './pages/Product Page/ProductPage'
 import Login from './pages/Login'
 import Cart from './pages/Cart'
@@ -11,21 +10,22 @@ import Navbar from './components/Navbar/Navbar'
 import Llm from './pages/LLM/Llm'
 import PredictCrops from './pages/Crop Prediction/PredictCrops'
 import GeoLocationComponent from './components/Footer/GeoLocationComponent'
+import useUserContext from './Hooks/useUserContext'
 
 function App() {
-
+  const { user } = useUserContext();
   return (
     <Router>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={user ? <Navigate to='/Home' /> : <Navigate to='/user/login'/>} />
+        <Route path="/Home" element={user ? <ProductListing/> : <Navigate to="/user/login"/>} />
+        <Route path="/user/login" element={!user ? <Login/> : <Navigate to="/"/>} />
+        <Route path="/user/signup" element={!user ? <SignUp/> : <Navigate to="/"/>} />
         <Route path="/product/:id" element={<ProductPage/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/sign-up" element={<SignUp/>} />
-        <Route path="/productlisting" element={<ProductListing/>} />
-        <Route path="/chatbot" element={<Llm/>} />
-        <Route path="/predict-crop" element={<PredictCrops/>} />
+        <Route path="/cart" element={user ? <Cart/> : <Navigate to="/user/login"/>} />
+        <Route path="/chatbot" element={user ? <Llm/> : <Navigate to="/user/login"/>} />
+        <Route path="/predict-crop" element={user ? <PredictCrops/> : <Navigate to="/user/login"/>} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
       <GeoLocationComponent/>

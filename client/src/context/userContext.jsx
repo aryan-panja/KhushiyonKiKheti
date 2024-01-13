@@ -7,10 +7,15 @@ export function handleReducerHook(prevState , action){
     switch(action.type){
         case "LOGIN":
             console.log("login")
-            return {...action.payload}
+            return {...prevState , ...action.payload}
         case "LOGOUT":
             console.log('logout')
-            return { user : null , token: null }
+            return { user : null , token: null , location : prevState.location}
+        case "setLocation":{
+            console.log('location is set');
+            console.log(action.payload);
+            return { ...prevState , location : action.payload}
+        }
         default : 
             return prevState
     }
@@ -19,7 +24,8 @@ export function handleReducerHook(prevState , action){
 export function UserContextProvider({children}){
     const [state , dispatch ] = useReducer(handleReducerHook , {
         user : null,
-        token : null
+        token : null,
+        location:null
     })
     useEffect(()=>{
         const userData =JSON.parse(localStorage.getItem('USER'));

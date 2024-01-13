@@ -1,17 +1,21 @@
-import { useRef } from "react";
-import usePost from "../Hooks/usePost"
+import { useRef , useState } from "react";
 import Url from "../../../url"
+import useUserContext from "../Hooks/useUserContext"
 
 export default function SignUp() {
-
+  const { dispatch } = useUserContext();
   const emailRef = useRef();
   const passwordRef = useRef();
   const nameRef = useRef();
   const addressRef = useRef();
+  const phoneNumberRef = useRef();
+  const isSellerRef = useRef();
+  const [isLoading, setisLoading] = useState(false)
 
   async function handleSignUp(event) {
     event.preventDefault();
-    
+    setisLoading(true)
+
     console.log(emailRef.current.value)
 
     const userData = {
@@ -19,42 +23,54 @@ export default function SignUp() {
       password: passwordRef.current.value,
       name: nameRef.current.value,
       address: addressRef.current.value,
-      phoneNumber: 23123,
-      isBuyer: false
-    }
+      phoneNumber: phoneNumberRef.current.value,
+    };
+    if(isSellerRef.current.value == 'Seller') userData.isSeller = true;
+    else userData.isSeller = false;
 
     const url = Url.serverUrl + "/user/signup";
     const response = await fetch(url, {
-        method : "POST",
-        headers : {
-            'content-type' : 'application/json',
-            'Authorization' : `Bearer ${token}`
-        },
-        body : JSON.stringify(userData)
-      });
-      const json = await response.json()
-
-      if(response.ok) console.log(json);
-    
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+    const json = await response.json()
+    setisLoading(false)
+    if (response.ok) {
+      console.log(json);
+      localStorage.setItem('USER', JSON.stringify(json));
+      dispatch({ type: "LOGIN", payload: json });
+      emailRef.current.value = "";
+      passwordRef.current.value = ""
+    } else {
+      seterror(json.message);
+    }
   }
 
-  return (
-    <form className="signupPage-div">
 
-      <label htmlFor="email">Email</label>
-      <input type="email" id="email" ref={emailRef} />
 
-      <label htmlFor="password">Password</label>
-      <input type="password" id="password" ref={passwordRef} />
+return (
+  <form className="signupPage-div">
+    <p className="signupPage-heading">Create Account</p>
 
-      <label htmlFor="userName">Name</label>
-      <input type="text" id="userName" ref={nameRef} />
+    <input type="text" id="userName" placeholder="Name" ref={nameRef} />
 
-      <label htmlFor="userAddress">Address</label>
-      <input type="text" id="userAddress" ref={addressRef} />
+    <input type="email" id="email" placeholder="Email" ref={emailRef} />
 
-      <button onClick={handleSignUp}>SignUp</button>
-    </form>
-  )
+    <input type="password" id="password" placeholder="Password" ref={passwordRef} />
 
+    <input type="text" id="userAddress" placeholder="Address" ref={addressRef} />
+
+    <input type="number" id="phoneNumber" placeholder="Phone number" ref={phoneNumberRef} />
+
+    <select id="isSeller" ref={isSellerRef}>
+      <option value="Buyer">Buyer</option>
+      <option value="Seller">Seller</option>
+    </select>
+
+    <button disabled={isLoading} onClick={handleSignUp}>SignUp</button>
+  </form>
+)
 }

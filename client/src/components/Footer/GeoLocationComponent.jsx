@@ -1,10 +1,11 @@
-// LocationComponent.jsx
-
 import React, { useState, useEffect } from 'react';
-import './index.css'; // Import your CSS file
+import './index.css'; 
+import useUserContext from '../../Hooks/useUserContext';
+
 
 const LocationComponent = () => {
   const [location, setLocation] = useState(null);
+  const { dispatch } = useUserContext();
 
   useEffect(() => {
     if ('geolocation' in navigator) {
@@ -21,6 +22,8 @@ const LocationComponent = () => {
               const country = data.address.country;
 
               setLocation({ city, state, country });
+              dispatch({type : "setLocation" , payload : { city, state, country }})
+              
             })
             .catch((error) => {
               console.error('Error fetching location:', error);

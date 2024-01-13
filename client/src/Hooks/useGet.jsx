@@ -1,18 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
-import {Url} from "../../../url"
-export default function useGet( theUrl , token) {
+import Url from "../../../url"
+import useUserContext from "./useUserContext";
+export default async function useGet( theUrl ) {
 
+    const {token} = useUserContext()
     const url = Url.serverUrl + theUrl
-    return useQuery({
-        queryKey: ['repoData'],
-        queryFn: async () => {
-            const response = await fetch(url, {
-                headers: {
-                    'content-type': 'application/json',
-                    'headers': `Bearer ${token}`
-                }
-            });
-            return await response.json();
+    const response = await fetch(url , {
+        headers : {
+            'content-type' : 'application/json',
+            'Authorization' : `Bearer ${token}`
         }
-    })
+    });
+    const json = await response.json();
+    return { response , json }
 }

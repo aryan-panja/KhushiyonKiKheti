@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 function createToken(id) {
-    return jwt.sign(id, process.env.SECRET, { expiresIn: '3d' });
+    return jwt.sign({id}, process.env.SECRET, { expiresIn: '3d' });
 }
 
 
@@ -55,10 +55,12 @@ async function login(req, res) {
         }
 
         const token = createToken(user._id);
+        console.log(token)
         res.json({token , user});
 
     } catch (error) {
-        res.json({message : error});
+        res.json(error);
+        console.log(error)
     }
 }
 

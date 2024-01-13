@@ -1,50 +1,55 @@
-// src/components/ProductListing.jsx
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react"
+import Url from "../../../url"
+import useGet from "../Hooks/useGet";
+import useUserContext from "../Hooks/useUserContext";
 
-const ProductListing = () => {
-  const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+export default function ProductListing(){
+  const { token , location } = useUserContext();
+  const [isLoading , setIsLoading ] = useState(true)
+  const [ Products , setProducts ] = useState([]);
+  console.log(location)
+  useEffect(()=>{
+    // const ProductData = useGet('/product/allProducts');
+    
+    // if(token ?? ProductData.response.ok){
+    //   console.log(ProductData.json)
+    //   setProducts(ProductData.json);
+    //   setIsLoading(false)
+    // }
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('http://localhost:5000/product/allProducts');
-        if (response.ok) {
-          const data = await response.json();
-          setProducts(data);
+    async function fetchingData(){
+      const response = await fetch(Url.serverUrl + '/product/allProducts',{
+        headers : {
+          'content-type' : 'application/json',
+          'Authorization' : `Bearer ${token}`
         }
-      } catch (error) {
-        console.error('Error fetching product data:', error);
+      });
+      const json = await response.json();
+
+      if(response.ok){
+        setProducts(json);
+        setIsLoading(false);
+      }else{
+        console.log(json)
       }
     }
-    fetchData();
-  }, []);
+    if( token ) fetchingData()
 
-  const handleProductClick = (product) => {
-    // Navigate to the product detail page and pass the product data in the state
-    navigate(`/product/${product._id}`, { state: product });
-  };
+  },[token])
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {products.map((product) => (
-        <div
-          key={product._id}
-          onClick={() => handleProductClick(product)}
-          style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
-        >
-          <div style={{ flex: '0 0 300px', margin: '10px', padding: '10px', border: '1px solid #ccc' }}>
-            <img src={product.image} alt={product.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-            <h3>{product.title}</h3>
-            <p>Price: ${product.price}</p>
-            <p>Description: {product.description}</p>
-            <p>Seller: {product.sellerName}</p>
-          </div>
+    <div className="productListingPage-div">
+      {!isLoading ? (
+        <div className="productListingPage-container">
+          {Products.map((product)=>(
+            <div className="productListingPage-product">
+              {product.title}
+            </div>
+          ))}
         </div>
-      ))}
+      ):(
+        "Page is Loading"
+      ) }
     </div>
-  );
-};
-
-export default ProductListing;
+  )
+}
