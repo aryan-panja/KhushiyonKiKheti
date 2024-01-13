@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
+import './index.css'; // Import your CSS file
 
 const PredictCrops = () => {
     const [formData, setFormData] = useState({
-        N: '90',
-        P: '42',
-        K: '43',
-        temp: '',
-        pH: '6.5',
-        humidity: '82',
-        rainfall: '203',
+        N: '',
+        P: '',
+        K: '',
+        temperature: '',
+        humidity: '',
+        pH: '',
+        rainfall: '',
     });
+
+    const convertFormDataToArray = () => {
+        return [
+            parseFloat(formData.N),
+            parseFloat(formData.P),
+            parseFloat(formData.K),
+            parseFloat(formData.temperature),
+            parseFloat(formData.humidity),
+            parseFloat(formData.pH),
+            parseFloat(formData.rainfall),
+        ];
+    };
 
     const [mlPrediction, setMLPrediction] = useState('');
 
@@ -23,7 +36,7 @@ const PredictCrops = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({ formData: convertFormDataToArray() }),
         });
 
         const mlPredictionJson = await mlPredictionResult.json();
@@ -38,24 +51,138 @@ const PredictCrops = () => {
                 <tbody>
                     <tr>
                         <td>
-                            <label htmlFor="temp">Temperature:</label>
+                            <label htmlFor="temperature">Temperature:</label>
                         </td>
                         <td>
                             <input
                                 type="text"
-                                id="temp"
-                                name="temp"
-                                value={formData.temp}
+                                id="temperature"
+                                name="temperature"
+                                value={formData.temperature}
                                 onChange={(e) => {
                                     setFormData({
                                         ...formData,
-                                        temp: e.target.value,
+                                        temperature: e.target.value,
                                     });
                                 }}
                             />
                         </td>
                     </tr>
-                    {/* Add more rows for other form fields */}
+                    <tr>
+                        <td>
+                            <label htmlFor="humidity">Humidity:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="humidity"
+                                name="humidity"
+                                value={formData.humidity}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        humidity: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="rainfall">Rainfall:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="rainfall"
+                                name="rainfall"
+                                value={formData.rainfall}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        rainfall: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="N">N:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="N"
+                                name="N"
+                                value={formData.N}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        N: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="P">P:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="P"
+                                name="P"
+                                value={formData.P}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        P: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="K">K:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="K"
+                                name="K"
+                                value={formData.K}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        K: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="pH">pH:</label>
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                id="pH"
+                                name="pH"
+                                value={formData.pH}
+                                onChange={(e) => {
+                                    setFormData({
+                                        ...formData,
+                                        pH: e.target.value,
+                                    });
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    {/* Add more rows for other features */}
                 </tbody>
             </table>
 
