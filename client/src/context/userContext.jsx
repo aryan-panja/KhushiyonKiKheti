@@ -16,6 +16,11 @@ export function handleReducerHook(prevState , action){
             console.log(action.payload);
             return { ...prevState , location : action.payload}
         }
+        case "setTemperature":{
+            console.log('temperature is set');
+            console.log(action.payload);
+            return { ...prevState , temperature : action.payload}
+        }
         default : 
             return prevState
     }
@@ -25,7 +30,12 @@ export function UserContextProvider({children}){
     const [state , dispatch ] = useReducer(handleReducerHook , {
         user : null,
         token : null,
-        location:null
+        location:{
+            city : 'jalandhar',
+            state : 'punjab',
+            country : 'india'
+        },
+        temperature:25
     })
     useEffect(()=>{
         const userData =JSON.parse(localStorage.getItem('USER'));

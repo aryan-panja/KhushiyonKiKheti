@@ -5,7 +5,7 @@ import useUserContext from '../../Hooks/useUserContext';
 
 const LocationComponent = () => {
   const [location, setLocation] = useState(null);
-  const { dispatch } = useUserContext();
+  const { dispatch, temperature } = useUserContext();
 
   useEffect(() => {
     if ('geolocation' in navigator) {
@@ -42,7 +42,7 @@ const LocationComponent = () => {
     <div className="footer-location">
       {location ? (
         <p>
-          Your location: City = {location.city}, State = {location.state}, Country = {location.country}
+          Your location: City = {location.city}, State = {location.state}, Country = {location.country}, and Current Temperature = {temperature}°C
         </p>
       ) : (
         <p>Loading location...</p>

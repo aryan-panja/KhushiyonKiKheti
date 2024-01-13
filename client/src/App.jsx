@@ -11,6 +11,7 @@ import Llm from './pages/LLM/Llm'
 import PredictCrops from './pages/Crop Prediction/PredictCrops'
 import GeoLocationComponent from './components/Footer/GeoLocationComponent'
 import useUserContext from './Hooks/useUserContext'
+import Weather from './components/Weather/Weather'
 
 function App() {
   const { user } = useUserContext();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/chatbot" element={user ? <Llm/> : <Navigate to="/user/login"/>} />
         <Route path="/predict-crop" element={user ? <PredictCrops/> : <Navigate to="/user/login"/>} />
         <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="/weather" element={<Weather/>} />
       </Routes>
       <GeoLocationComponent/>
     </Router>
