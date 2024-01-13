@@ -1,17 +1,20 @@
 // App.js
 import React, { useState, useEffect } from 'react';
+import useUserContext from '../../Hooks/useUserContext';
+
 
 function App() {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
   const [speakButtonDisabled, setSpeakButtonDisabled] = useState(true);
   const [stopButtonDisabled, setStopButtonDisabled] = useState(true);
+  const { location } = useUserContext();
 
   const handleSendMessage = async () => {
     const Combined_Input =
       userInput +
       " " +
-      `And i live in {jalandhar} in {punjab} in {india}. And right now the climate is {cold} and the soil is {soil}. From predicted crop i have been suggested to sow {wheat} also from predicted price to sell i have been suggested to sell at {price}. An tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
+      `And i live in ${location.city} in ${location.state} in ${location.country}. And right now the climate is {cold} and the soil is {punjab soil}. From predicted crop i have been suggested to sow {wheat} also from predicted price to sell i have been suggested to sell at {take price from internet}. An tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
     try {
       const response = await fetch('http://localhost:5001/process_input', {
         method: 'POST',
