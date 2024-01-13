@@ -28,6 +28,13 @@ const Navbar = () => {
         <li>
           <Link to="/chatbot">Talk With AI</Link>
         </li>
+        {
+          user?.isSeller && (
+            <li>
+              <Link to="/predict-crop">Predict Crop</Link>
+            </li>
+          )
+        }
         {user?.isSeller && (
           <li>
             <Link to="/add-product">Add Product</Link>

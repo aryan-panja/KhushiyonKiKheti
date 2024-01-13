@@ -1,5 +1,5 @@
 import React from 'react'
-import GeolocationComponent from './GeoLocationComponent'
+import GeolocationComponent from './GeoLocation/GeoLocationComponent'
 import Weather from './Weather/Weather'
 import './index.css'
 
