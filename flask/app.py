@@ -65,6 +65,17 @@ def process_input():
     print(response_text)
     return jsonify({"response": response_text})
 
+# New route for ML model predictions
+@app.route('/predict_ml', methods=['POST'])
+def predict_ml():
+    data = request.json
+    user_input = data.get('formdata')
+
+    # Call the ML model for predictions
+    ml_prediction = predict_function(user_input)
+    print(ml_prediction)
+    return jsonify({"mlPrediction": ml_prediction})
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
 
