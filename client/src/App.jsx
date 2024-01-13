@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar/Navbar'
 import Llm from './pages/LLM/Llm'
 import PredictCrops from './pages/Crop Prediction/PredictCrops'
+import GeoLocationComponent from './components/Footer/GeoLocationComponent'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/predict-crop" element={<PredictCrops/>} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
+      <GeoLocationComponent/>
     </Router>
   )
 }
