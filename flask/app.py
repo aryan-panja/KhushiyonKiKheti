@@ -7,13 +7,14 @@ import pickle
 from dotenv import load_dotenv
 from flask_cors import CORS
 import numpy as np
+from flask_cors import cross_origin
 
 # Configure Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 # Set up the generative AI model
-genai.configure(api_key="Api_key")
+genai.configure(api_key="")
 generation_config = {
     "temperature": 0.9,
     "top_p": 1,
@@ -34,11 +35,23 @@ model = genai.GenerativeModel(
 with open("history.json", "r") as f:
     history = json.load(f)
 
-def process_user_input(user_input):
+@app.route('/process_input', methods=['POST'])
+# @cross_origin()
+def process_user_input():
     convo = model.start_chat(history=history)
+    data = request.json
+    user_input = data.get('Combined_Input')
     response = convo.send_message(user_input)
     response_text = response.text
-    return response_text
+    
+    response_data = {"response": response_text}
+
+    # Add CORS headers
+    response = jsonify(response_data)
+    response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
+    response.headers.add("Access-Control-Allow-Credentials", "true")
+
+    return response
 
 # Load your pre-trained ML model
 with open('D:\ML DATASET\crop_suggestion\Model\crop_suggestion.pkl', 'rb') as model_file:
