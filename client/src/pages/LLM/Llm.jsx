@@ -1,7 +1,6 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import useUserContext from '../../Hooks/useUserContext';
-
+import './index.css';
 
 function App() {
   const [userInput, setUserInput] = useState('');

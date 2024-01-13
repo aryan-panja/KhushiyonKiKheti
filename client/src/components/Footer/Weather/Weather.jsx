@@ -1,6 +1,6 @@
 // Weather.js
 import React, { useContext, useEffect, useState } from 'react';
-import useUserContext from '../../Hooks/useUserContext';
+import useUserContext from '../../../Hooks/useUserContext';
 
 const Weather = () => {
   const { location } = useUserContext();
@@ -35,7 +35,7 @@ const Weather = () => {
         const temperatureInKelvin = weatherData.main.temp; // Temperature in Kelvin
         const temperatureInCelsius = temperatureInKelvin - 273.15; // Convert to Celsius
         setTemperature(temperatureInCelsius);
-        dispatch({type : "setTemperature" , payload : temperatureInCelsius})
+        dispatch({ type: "setTemperature", payload: temperatureInCelsius })
       } catch (error) {
         console.error('Error fetching weather:', error.message);
       }
@@ -45,13 +45,9 @@ const Weather = () => {
   }, [location]);
 
   return (
-    <div>
-      <h2>Weather Information</h2>
-      <p>
-        Location: {location ? `${location.city}, ${location.state}, ${location.country}` : 'Loading...'} <br />
-        Temperature: {temperature !== null ? `${temperature.toFixed(2)} °C` : 'Loading...'}
-      </p>
-    </div>
+    <p>
+      , Temperature: {temperature !== null ? `${temperature.toFixed(2)} °C` : 'Loading...'}
+    </p>
   );
 };
 

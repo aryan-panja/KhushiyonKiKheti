@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './index.css'; 
 import useUserContext from '../../Hooks/useUserContext';
 
 
@@ -39,15 +38,15 @@ const LocationComponent = () => {
   }, []);
 
   return (
-    <div className="footer-location">
+    <>
       {location ? (
         <p>
-          Your location: City = {location.city}, State = {location.state}, Country = {location.country}, and Current Temperature = {temperature}°C
+          Your location: City = {location.city}, State = {location.state}, Country = {location.country}
         </p>
       ) : (
         <p>Loading location...</p>
       )}
-    </div>
+    </>
   );
 };
 

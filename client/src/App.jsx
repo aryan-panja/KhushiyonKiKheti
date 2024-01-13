@@ -11,7 +11,8 @@ import Llm from './pages/LLM/Llm'
 import PredictCrops from './pages/Crop Prediction/PredictCrops'
 import GeoLocationComponent from './components/Footer/GeoLocationComponent'
 import useUserContext from './Hooks/useUserContext'
-import Weather from './components/Weather/Weather'
+import Weather from './components/Footer/Weather/Weather'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const { user } = useUserContext();
@@ -30,7 +31,7 @@ function App() {
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/weather" element={<Weather/>} />
       </Routes>
-      <GeoLocationComponent/>
+      <Footer/>
     </Router>
   )
 }
