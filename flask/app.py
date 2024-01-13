@@ -46,6 +46,8 @@ def process_user_input():
     
     response_data = {"response": response_text}
 
+    # response_data = response_data.replace('\n', '<br>') 
+
     # Add CORS headers
     response = jsonify(response_data)
     response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
