@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './index.css'; // Import your CSS file
+import useUserContext from '../../Hooks/useUserContext';
 
 const PredictCrops = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const PredictCrops = () => {
         pH: '',
         rainfall: '',
     });
+
+    const { dispatch } = useUserContext();
 
     const convertFormDataToArray = () => {
         return [
@@ -41,7 +44,10 @@ const PredictCrops = () => {
 
         const mlPredictionJson = await mlPredictionResult.json();
         const mlPredictionText = mlPredictionJson.mlPrediction;
+        console.log(mlPredictionText);
         setMLPrediction(mlPredictionText);
+        dispatch({ type: "setMLPrediction", payload: mlPredictionText })
+
     };
 
     return (
@@ -194,7 +200,7 @@ const PredictCrops = () => {
                 <p>
                     <strong>ML Prediction:</strong>
                 </p>
-                <p>{mlPrediction}</p>
+                <p style={{ color: "black" }}>{mlPrediction}</p>
             </div>
         </div>
     );

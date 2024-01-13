@@ -21,6 +21,11 @@ export function handleReducerHook(prevState , action){
             console.log(action.payload);
             return { ...prevState , temperature : action.payload}
         }
+        case "setMLPrediction":{
+            console.log('ML Prediction is set');
+            console.log(action.payload);
+            return { ...prevState , mlPrediction : action.payload}
+        }
         default : 
             return prevState
     }
@@ -35,7 +40,8 @@ export function UserContextProvider({children}){
             state : 'punjab',
             country : 'india'
         },
-        temperature: 25
+        temperature: 25,
+        mlPrediction: null,
     })
     useEffect(()=>{
         const userData =JSON.parse(localStorage.getItem('USER'));
