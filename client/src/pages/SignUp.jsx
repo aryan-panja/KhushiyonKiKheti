@@ -4,7 +4,7 @@ import useUserContext from "../Hooks/useUserContext"
 
 export default function SignUp() {
   const { dispatch } = useUserContext();
-  const emailRef = useRef();
+  const emailRef = useRef(); 
   const passwordRef = useRef();
   const nameRef = useRef();
   const addressRef = useRef();

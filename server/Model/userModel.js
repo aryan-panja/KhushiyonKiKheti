@@ -10,7 +10,7 @@ const userSchema = new schema({
         type : String ,
         requried : true
     },
-    Name: {
+    name: {
         type : String ,
         requried : true
     },

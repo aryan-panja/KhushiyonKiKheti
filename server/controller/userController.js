@@ -7,7 +7,7 @@ function createToken(id) {
     return jwt.sign({id}, process.env.SECRET, { expiresIn: '3d' });
 }
 
-
+ 
 async function signup( req , res) {
 
     const { name, email, password , phoneNumber , address , isSeller} = req.body;

@@ -46,8 +46,8 @@ export default function ProductListing() {
 
 function Product({ product }) {
 
-  const [quantity , setQuantity ] = useState(500)
-  const [price , setPrice ] = useState(100);
+  const [quantity , setQuantity ] = useState(product.minQuantity)
+  const [price , setPrice ] = useState(product.price);
 
   function handleAddQuantity(){
     setPrice( prev => prev*(quantity+1)/quantity);
@@ -76,7 +76,6 @@ function Product({ product }) {
       </div>
       <p className="productListingPage-product-price">
         ₹{price}
-        {/* ₹56 */}
       </p>
       <p className="productListingPage-product-AddToCart">
         Add
