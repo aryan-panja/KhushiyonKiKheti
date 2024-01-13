@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 # Set up the generative AI model
-genai.configure(api_key="AIzaSyDSm2xlZV72b3lBACf-tTDZVnB8gKPMK4Q")
+genai.configure(api_key="")
 generation_config = {
     "temperature": 0.9,
     "top_p": 1,
