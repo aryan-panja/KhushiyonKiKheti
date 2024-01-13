@@ -1,1 +1,1 @@
-export const api = ""; // Replace with your actual API key
+export const api = ""; // Replace with your actual API key"; // Replace with your actual API key

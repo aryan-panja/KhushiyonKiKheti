@@ -1,35 +1,35 @@
-// ChatComponent.jsx
+// App.js
 import React, { useState } from 'react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import './index.css';  // Import the ChatbotComponent.css
-import { initialChatHistory } from './history';
-import {api} from './api_key';
 
-const ChatComponent = () => {
+function App() {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
 
   const handleSendMessage = async () => {
-    const API_KEY = api; // Replace with your actual API key
+    try {
+      const response = await fetch('http://localhost:5001/process_input', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userInput }),
+      });
 
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      if (!response.ok) {
+        throw new Error('Failed to fetch response from server');
+      }
 
-    const chat = model.startChat({
-      history: initialChatHistory,
-      generationConfig: {
-        maxOutputTokens: 100,
-      },
-    });
-
-    const result = await chat.sendMessage(userInput + " and i also live in jalandhar ");
-    const responseText = await result.response.text();
-    setResponse(responseText);
+      const responseData = await response.json();
+      setResponse(responseData.response);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-messages">
+    <div className="App">
+      <h1>Generative AI Chat</h1>
+      <div>
         <label htmlFor="userInput">Your message:</label>
         <input
           type="text"
@@ -45,10 +45,10 @@ const ChatComponent = () => {
         <p>
           <strong>Response:</strong>
         </p>
-        <p className='model'>{response}</p>
+        <p>{response}</p>
       </div>
     </div>
   );
-};
+}
 
-export default ChatComponent;
+export default App;
