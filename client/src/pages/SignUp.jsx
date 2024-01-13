@@ -23,16 +23,19 @@ export default function SignUp() {
       isBuyer: false
     }
 
-    const response = await fetch(Url.serverUrl + "/user/signup", {
-      method : "POST",
-      headers: {
-        'content-type': 'application/json'
-      },
-      body : JSON.stringify(userData)
-    });
-    const json = await response.json()
+    const url = Url.serverUrl + "/user/signup";
+    const response = await fetch(url, {
+        method : "POST",
+        headers : {
+            'content-type' : 'application/json',
+            'Authorization' : `Bearer ${token}`
+        },
+        body : JSON.stringify(userData)
+      });
+      const json = await response.json()
 
-    console.log(json);
+      if(response.ok) console.log(json);
+    
   }
 
   return (

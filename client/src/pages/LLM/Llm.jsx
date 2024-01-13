@@ -1,36 +1,37 @@
-// ChatComponent.jsx
+// App.js
 import React, { useState } from 'react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import './index.css';  // Import the ChatbotComponent.css
-import { initialChatHistory } from './history';
-import {api} from './api_key';
 
-const ChatComponent = () => {
+function App() {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
 
   const handleSendMessage = async () => {
-    const API_KEY = api; // Replace with your actual API key
+    const Combined_Input = (userInput + " " + `And i live in {jalandhar} in {punjab} in {india} if that helps. And right now the climate is {cold} and the soil is {soil}. From predicted crop i have been suggested to sow {wheat} also from predicted price to sell i have been suggested to sell at {price}. An tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop.`)
+    try {
+      const response = await fetch('http://localhost:5001/process_input', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Access-Control-Allow-Origin': '*',  // Use the actual domain in production
+        },
+        body: JSON.stringify({ Combined_Input }),
+      });
 
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      if (!response.ok) {
+        throw new Error('Failed to fetch response from server');
+      }
 
-    const chat = model.startChat({
-      history: initialChatHistory,
-      generationConfig: {
-        maxOutputTokens: 100,
-      },
-    });
-
-    const result = await chat.sendMessage(userInput + " and i also live in jalandhar ");
-    const responseText = await result.response.text();
-    console.log(responseText)
-    setResponse(responseText);
+      const responseData = await response.json();
+      setResponse(responseData.response);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-messages">
+    <div className="App">
+      <h1>Generative AI Chat</h1>
+      <div>
         <label htmlFor="userInput">Your message:</label>
         <input
           type="text"
@@ -46,10 +47,10 @@ const ChatComponent = () => {
         <p>
           <strong>Response:</strong>
         </p>
-        <p className='model'>{response}</p>
+        <p>{response}</p>
       </div>
     </div>
   );
-};
+}
 
-export default ChatComponent;
+export default App;

@@ -1,1 +1,1 @@
-export const api = "AIzaSyDSm2xlZV72b3lBACf-tTDZVnB8gKPMK4Q"; // Replace with your actual API key
+export const api = ""; // Replace with your actual API key

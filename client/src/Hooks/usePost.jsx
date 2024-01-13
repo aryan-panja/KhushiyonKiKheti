@@ -1,25 +1,18 @@
-import { useMutation } from "@tanstack/react-query"
 import Url from "../../../url"
 
-export default function usePost( theUrl , token ){
-
-    const url = Url.serverUrl + theUrl;
+export default async function usePost( theUrl , userData){
     
-    const mutation = useMutation(async (data)=>{
-        const response = await fetch(url , {
-            headers : {
-                'content-type' : 'application/json',
-                'authorization' : `Bearer ${token}`
-            },
-            body : JSON.stringify(data)
-        });
-
-        const json = response.json();
-
-        if(!response.ok) throw Error("Error in usePost - response.ok = false");
-
-        return json;
-    });
-
-    return mutation;
+    const { token } = useUserContext();
+    const url = Url.serverUrl + theUrl;
+    const response = await fetch(url, {
+        method : "POST",
+        headers : {
+            'content-type' : 'application/json',
+            'Authorization' : `Bearer ${token}`
+        },
+        body : JSON.stringify(userData)
+      });
+      const json = await response.json()
+  
+      return {response , json}
 }
