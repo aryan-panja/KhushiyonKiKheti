@@ -10,8 +10,7 @@ function createToken(id) {
 
 async function signup( req , res) {
 
-    const { name, email, password , phoneNumber , address , isBuyer} = req.body;
-    console.log(email)
+    const { name, email, password , phoneNumber , address , isSeller} = req.body;
     try {
         if (!email || !password)
             throw Error('All fields are required');
@@ -27,7 +26,7 @@ async function signup( req , res) {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
 
-        const user = await User.create({ name, email, password: hash , address , phoneNumber , isBuyer });
+        const user = await User.create({ name, email, password: hash , address , phoneNumber , isSeller });
         const token = createToken(user._id);
         res.json({ user, token })
     } catch (error) {

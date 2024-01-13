@@ -25,6 +25,7 @@ export default function SignUp() {
       address: addressRef.current.value,
       phoneNumber: phoneNumberRef.current.value,
     };
+    console.log(isSellerRef.current.value);
     if(isSellerRef.current.value == 'Seller') userData.isSeller = true;
     else userData.isSeller = false;
 

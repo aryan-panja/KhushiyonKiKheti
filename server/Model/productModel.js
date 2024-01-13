@@ -10,8 +10,12 @@ const ProductSchema = new Schema({
         type : String,
         required : true
     },
-    location : {
-        type : String,
+    price : {
+        type : Number,
+        required : true
+    },
+    minQuantity : {
+        type : Number,
         required : true
     },
     sellerName : {

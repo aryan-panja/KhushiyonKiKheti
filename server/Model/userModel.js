@@ -18,7 +18,7 @@ const userSchema = new schema({
         type : String ,
         requried : true
     },
-    isBuyer : {
+    isSeller : {
         type : Boolean ,
         requried : true
     },

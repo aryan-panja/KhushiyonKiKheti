@@ -21,7 +21,7 @@ async function getAllProducts(req , res){
 }
 
 async function addProduct(req , res){
-    const { title , description , sellerName , sellerId , location } = req.body;
+    const { title , description , sellerName , sellerId , price , minQuantity } = req.body;
 
     try{
         if(sellerId !== req.userId ) 
