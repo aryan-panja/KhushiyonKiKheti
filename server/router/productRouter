@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+const Authentication = require('../middlewares/authentication');
 const {
     getProductById , 
     getAllProducts , 
     addProduct
 } = require("../controller/ProductController");
+
+router.use(Authentication);
 
 router.get('/id/:id',getProductById);
 

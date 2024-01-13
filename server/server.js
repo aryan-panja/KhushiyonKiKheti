@@ -6,14 +6,15 @@ const cors = require('cors');
 
 app.use(cors())
 
-app.get('/',(req , res)=> res.json({message : "hello world"}))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 const ProductRouter = require('./router/productRouter');
+const UserRouter = require('./router/userRouter');
 
-app.use('/product' , ProductRouter)
+app.use('/product' , ProductRouter);
+app.use('/user' , UserRouter);
 
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     app.listen(process.env.PORT , ()=>{
@@ -22,7 +23,3 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 }).catch(error=>{
     console.log(error)
 })
-
-// app.listen(process.env.PORT , ()=> {
-//     console.log("Connected to db 👻")
-// })

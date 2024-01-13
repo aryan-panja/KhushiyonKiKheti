@@ -24,6 +24,7 @@ const ChatComponent = () => {
 
     const result = await chat.sendMessage(userInput + " and i also live in jalandhar ");
     const responseText = await result.response.text();
+    console.log(responseText)
     setResponse(responseText);
   };
 
