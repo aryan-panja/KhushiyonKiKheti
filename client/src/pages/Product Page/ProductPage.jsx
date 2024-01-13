@@ -1,39 +1,33 @@
 // src/components/ProductPage.jsx
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import PopCard from '../../components/Pop Card/PopCard'
 import './index.css'
 
 const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(true);
-
-  useEffect(() => {
-    // Simulating fetching product data from an API
-    const fetchProductData = async () => {
-      try {
-        const response = await fetch(`api/products/${id}`); // Replace with your actual API endpoint
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error('Error fetching product data:', error);
-      }
-    };
-
-    fetchProductData();
-  }, [id]);
+  const location = useLocation();
+  const product = location.state;
+  const [showCard, setShowCard] = useState(false);
 
   return (
     <div className="product-page-container">
       {product ? (
         <div className="product-details">
           <div className="product-image">
-            <img src={product.image} alt={product.name} />
+            <img src={product.image} alt={product.title} />
           </div>
           <div className="product-info">
-            <h2>{product.name}</h2>
+            <h2>{product.title}</h2>
             <p>Price: ${product.price}</p>
             <p>Description: {product.description}</p>
-            <Link to={'/cart'} ><button className="add-to-cart-btn">Add to Cart</button></Link>
+            <p>Seller: {product.sellerName}</p>
+            <button className="add-to-cart-btn" onClick={() => setShowCard(true)}>
+              Add to Cart
+            </button>
+            {showCard && <PopCard
+              setShowCard={setShowCard}
+            />}
           </div>
         </div>
       ) : (
