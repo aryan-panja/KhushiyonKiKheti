@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 
 # Set up the generative AI model
-genai.configure(api_key="AIzaSyDSm2xlZV72b3lBACf-tTDZVnB8gKPMK4Q")
+genai.configure(api_key="AIzaSyBFuup2R6zanwAWnrQ6nKTsvuiTUzTm_0o")
 generation_config = {
     "temperature": 0.9,
     "top_p": 1,
@@ -45,6 +45,8 @@ def process_user_input():
     response_text = response.text
     
     response_data = {"response": response_text}
+
+    # response_data = response_data.replace('\n', '<br>') 
 
     # Add CORS headers
     response = jsonify(response_data)
