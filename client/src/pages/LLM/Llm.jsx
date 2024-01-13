@@ -1,12 +1,17 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState('');
+  const [speakButtonDisabled, setSpeakButtonDisabled] = useState(true);
+  const [stopButtonDisabled, setStopButtonDisabled] = useState(true);
 
   const handleSendMessage = async () => {
-    const Combined_Input = (userInput + " " + `And i live in {jalandhar} in {punjab} in {india} if that helps. And right now the climate is {cold} and the soil is {soil}. From predicted crop i have been suggested to sow {wheat} also from predicted price to sell i have been suggested to sell at {price}. An tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop.`)
+    const Combined_Input =
+      userInput +
+      " " +
+      `And i live in {jalandhar} in {punjab} in {india}. And right now the climate is {cold} and the soil is {soil}. From predicted crop i have been suggested to sow {wheat} also from predicted price to sell i have been suggested to sell at {price}. An tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
     try {
       const response = await fetch('http://localhost:5001/process_input', {
         method: 'POST',
@@ -22,11 +27,37 @@ function App() {
       }
 
       const responseData = await response.json();
-      setResponse(responseData.response);
+    
+      // Remove '**', '*', and spaces from the response and set it
+      const cleanedResponse = responseData.response
+        .replace(/\n/g, '<br/>')
+        .replace(/\*\*/g, '')
+        .replace(/\*/g, '')
+        .replace(/\s+/g, ' ');
+      setResponse(cleanedResponse);
+      setSpeakButtonDisabled(false); // Enable the speak button
     } catch (error) {
       console.error('Error:', error.message);
     }
   };
+
+  const speakResponse = () => {
+    const utterance = new SpeechSynthesisUtterance(response);
+    speechSynthesis.speak(utterance);
+    setStopButtonDisabled(false); // Enable the stop button
+  };
+
+  const stopSpeech = () => {
+    speechSynthesis.cancel();
+    setStopButtonDisabled(true); // Disable the stop button
+  };
+
+  useEffect(() => {
+    // Cleanup function
+    return () => {
+      speechSynthesis.cancel(); // Stop speech when component unmounts
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -41,13 +72,19 @@ function App() {
           onChange={(e) => setUserInput(e.target.value)}
         />
         <button onClick={handleSendMessage}>Submit</button>
+        <button onClick={speakResponse} disabled={speakButtonDisabled}>
+          Speak Response
+        </button>
+        <button onClick={stopSpeech} disabled={stopButtonDisabled}>
+          Stop Speech
+        </button>
       </div>
 
       <div>
-        <p>
-          <strong>Response:</strong>
-        </p>
-        <p>{response}</p>
+        <p
+          style={{ whiteSpace: 'pre-line' }}
+          dangerouslySetInnerHTML={{ __html: response }}
+        ></p>
       </div>
     </div>
   );
