@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './index.css'; // Import your CSS file
 import useUserContext from '../../Hooks/useUserContext';
+import { Link } from 'react-router-dom';
+// import {useHistory} from 'react-router-dom'
 
 const PredictCrops = () => {
+
+    // const history = useHistory();
+
 
     const { dispatch, weatherData } = useUserContext();
 
@@ -10,7 +15,7 @@ const PredictCrops = () => {
         N: '',
         P: '',
         K: '',
-        temperature: weatherData.main.temp-273.15,
+        temperature: weatherData.main.temp - 273.15,
         humidity: weatherData.main.humidity,
         pH: '',
         rainfall: '',
@@ -35,19 +40,26 @@ const PredictCrops = () => {
         const serverUrl = 'http://localhost:5001';
 
         // Get ML prediction
-        const mlPredictionResult = await fetch(`${serverUrl}/predict_ml`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ formData: convertFormDataToArray() }),
-        });
+        try {
+            const mlPredictionResult = await fetch(`${serverUrl}/predict_ml`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ formData: convertFormDataToArray() }),
+            });
 
-        const mlPredictionJson = await mlPredictionResult.json();
-        const mlPredictionText = mlPredictionJson.mlPrediction;
-        console.log(mlPredictionText);
-        setMLPrediction(mlPredictionText);
-        dispatch({ type: "setMLPrediction", payload: mlPredictionText })
+            const mlPredictionJson = await mlPredictionResult.json();
+            const mlPredictionText = mlPredictionJson.mlPrediction;
+            console.log(mlPredictionText);
+            setMLPrediction(mlPredictionText);
+            dispatch({ type: "setMLPrediction", payload: mlPredictionText })
+
+            // history.push('/chatbot')
+        } catch (error) {
+            console.log('Error:', error);
+        }
+
 
     };
 
@@ -201,7 +213,19 @@ const PredictCrops = () => {
                 <p>
                     <strong>ML Prediction:</strong>
                 </p>
-                <p style={{ color: "black" }}>{mlPrediction}</p>
+                <p style={{ color: "black" }}>
+                    {mlPrediction}
+                </p>
+                {
+                    mlPrediction && (
+                        <><p>To know more about this Crop click the button given below and then press Submit Button there.</p>
+                        <p>
+                            <button><Link to="/chatbot"> Go to Chatbot</Link></button>
+                        </p>
+                        </>
+                    )
+                }
+
             </div>
         </div>
     );
