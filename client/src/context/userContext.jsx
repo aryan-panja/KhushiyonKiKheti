@@ -75,9 +75,9 @@ export function UserContextProvider({ children }) {
             state: 'punjab',
             country: 'india'
         },
+        cart : [],
         temperature: 25,
         mlPrediction: null,
-        cart: []
     })
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('USER'));

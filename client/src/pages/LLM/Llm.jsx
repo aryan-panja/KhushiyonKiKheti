@@ -7,13 +7,13 @@ function App() {
   const [response, setResponse] = useState('');
   const [speakButtonDisabled, setSpeakButtonDisabled] = useState(true);
   const [stopButtonDisabled, setStopButtonDisabled] = useState(true);
-  const { location, temperature, mlPrediction } = useUserContext();
-
+  const { location, temperature, mlPrediction, user } = useUserContext();
+  // console.log(user.name)
   const handleSendMessage = async () => {
     const Combined_Input =
       userInput +
       " " +
-      `And i live in ${location.city} in ${location.state} in ${location.country}. And right now the temperature is ${temperature} and the soil is {punjab soil}. Also predicted price to sell my crop. Also if ${mlPrediction} is not null then this is the predicted crop given by the ml predictor. And tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
+      ` Hello My name is ${user.name}. And i live in ${location.city} in ${location.state} in ${location.country}. And right now the temperature is ${temperature} and the soil is {punjab soil}. Also predicted price to sell my crop. Also if ${mlPrediction} is not null then this is the predicted crop given by the ml predictor. And tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
     try {
       const response = await fetch('http://localhost:5001/process_input', {
         method: 'POST',
