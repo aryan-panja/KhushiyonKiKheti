@@ -3,17 +3,18 @@ import './index.css'; // Import your CSS file
 import useUserContext from '../../Hooks/useUserContext';
 
 const PredictCrops = () => {
+
+    const { dispatch, weatherData } = useUserContext();
+
     const [formData, setFormData] = useState({
         N: '',
         P: '',
         K: '',
-        temperature: '',
-        humidity: '',
+        temperature: weatherData.main.temp-273.15,
+        humidity: weatherData.main.humidity,
         pH: '',
         rainfall: '',
     });
-
-    const { dispatch } = useUserContext();
 
     const convertFormDataToArray = () => {
         return [

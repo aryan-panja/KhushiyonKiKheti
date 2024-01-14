@@ -26,6 +26,11 @@ export function handleReducerHook(prevState , action){
             console.log(action.payload);
             return { ...prevState , mlPrediction : action.payload}
         }
+        case "setWeatherData":{
+            console.log('Weather Data is set');
+            console.log(action.payload);
+            return { ...prevState , weatherData : action.payload}
+        }
         default : 
             return prevState
     }
@@ -41,7 +46,8 @@ export function UserContextProvider({children}){
             country : 'india'
         },
         temperature: 25,
-        mlPrediction: null,
+        weatherData: null,
+        
     })
     useEffect(()=>{
         const userData =JSON.parse(localStorage.getItem('USER'));
