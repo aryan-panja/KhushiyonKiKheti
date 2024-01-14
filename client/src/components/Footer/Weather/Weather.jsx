@@ -31,7 +31,7 @@ const Weather = () => {
 
         const weatherData = await weatherResponse.json();
         console.log(weatherData); // Log the weather data for debugging
-
+        dispatch({ type: "setWeatherData", payload: weatherData })
         const temperatureInKelvin = weatherData.main.temp; // Temperature in Kelvin
         const temperatureInCelsius = temperatureInKelvin - 273.15; // Convert to Celsius
         setTemperature(temperatureInCelsius);
