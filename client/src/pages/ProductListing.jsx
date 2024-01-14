@@ -46,6 +46,8 @@ export default function ProductListing() {
 
 function Product({ product }) {
 
+  const { dispatch } = useUserContext();
+
   const [quantity , setQuantity ] = useState(product.minQuantity)
   const [price , setPrice ] = useState(product.price);
 
@@ -56,6 +58,13 @@ function Product({ product }) {
   function handleSubtQuantity(){
     setPrice( prev => prev*(quantity-1)/quantity);
     setQuantity(prev=>prev-1);
+  }
+  function handleAddTocart(){
+    dispatch({type : "addToCart" , payload : {...product , quantity}});
+  }
+
+  function handleTestQuantity(){
+    dispatch({type : "addToCart" , payload : {...product , price : product.testQuantityPrice , quantity : product.testQuantity , testItem : true}})
   }
 
   return (
@@ -77,8 +86,11 @@ function Product({ product }) {
       <p className="productListingPage-product-price">
         ₹{price}
       </p>
-      <p className="productListingPage-product-AddToCart">
+      <p className="productListingPage-product-AddToCart" onClick={handleAddTocart}>
         Add
+      </p>
+      <p className="productListingPage-product-testQuantity" onClick={handleTestQuantity}>
+        Test {product.testQuantity} KG for ₹ {product.testQuantityPrice} 
       </p>
 
     </div>

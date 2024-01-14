@@ -26,6 +26,14 @@ const ProductSchema = new Schema({
         type : String,
         required : true
 
+    },
+    testQuantityPrice : {
+        type : Number , 
+        required : true
+    },
+    testQuantity: {
+        type : Number , 
+        required : true
     }
 })
 

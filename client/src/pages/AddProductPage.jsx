@@ -9,6 +9,8 @@ export default function AddProductPage(){
     const descRef = useRef();
     const priceRef = useRef();
     const minquantityref = useRef();
+    const testQuantityRef = useRef();
+    const testPriceRef = useRef();
     const Navigate = useNavigate();
     const { user , token } = useUserContext();
 
@@ -21,7 +23,9 @@ export default function AddProductPage(){
             sellerName : user.name,
             sellerId : user._id,
             minQuantity : minquantityref.current.value,
-            price : priceRef.current.value
+            price : priceRef.current.value,
+            testQuantity : testQuantityRef.current.value,
+            testQuantityPrice : testPriceRef.current.value
         }
         const response = await fetch(Url.serverUrl + '/product/addProduct',{
             method:"POST",
@@ -41,7 +45,6 @@ export default function AddProductPage(){
             console.log(json)
         }
 
-        
     }
 
     return(
@@ -61,13 +64,23 @@ export default function AddProductPage(){
             </div>
 
             <div className="addProductPage-minQuantity">
-                <p className="heading">Minimum Quantity in grams</p>
+                <p className="heading">Minimum Quantity in KG</p>
                 <input type="Number" id="minQuantity" ref={minquantityref}/>
             </div>
 
             <div className="addProductPage-price">
                 <p className="heading">Price for Min. Quantity</p>
                 <input type="Number" id="price" ref={priceRef}/>
+            </div>
+
+            <div className="addProductPage-testQuantity">
+                <p className="heading">Test Quantity in KG</p>
+                <input type="Number" id="minQuantity" ref={testQuantityRef}/>
+            </div>
+
+            <div className="addProductPage-price">
+                <p className="heading">Price for Test Quantity</p>
+                <input type="Number" id="price" ref={testPriceRef}/>
             </div>
 
             <button onClick={handleAddProduct}>Add Product</button>
