@@ -60,7 +60,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    height: 40vh;
+    height: 45vh;
     width: 15vw;
     margin: 4vh 3vw;
     padding: 2vh 2vw;
@@ -96,7 +96,7 @@
     margin-top: 2vh;
 }
 .productListingPage-product-AddToCart{
-    margin-top: 7vh;
+    margin-top: 5vh;
     border: 0.5px solid rgb(196, 3, 3);
     text-align: center;
     padding: 0.5vh 0;
@@ -105,6 +105,22 @@
     transition: all 0.2s ease-out;
 }
 .productListingPage-product-AddToCart:hover{
+    background-color:rgb(196, 3, 3);
+    /* border: none; */
+    color : white;
+
+}
+.productListingPage-product-testQuantity{
+    cursor: pointer;
+    margin-top: 1vh;
+    border: 0.5px solid rgb(196, 3, 3);
+    text-align: center;
+    padding: 0.5vh 0;
+    border-radius: 4px;
+    color: rgb(196, 3, 3);
+    transition: all 0.2s ease-out;
+}
+.productListingPage-product-testQuantity:hover{
     background-color:rgb(196, 3, 3);
     /* border: none; */
     color : white;
@@ -147,4 +163,81 @@
 }
 #description{
     height: 6vh;
+}
+
+
+/* Cart Page */
+
+.cart-div {
+    display: flex;
+    margin: 3vh 10vw;
+    background-color: rgb(205, 205, 205);
+    border-radius: 8px;
+}
+
+.cart-products-div {
+    display: flex;
+    flex-direction: row;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+.cartProduct {
+    display: flex;
+    background-color: white;
+    height: 15vh;
+    width: 40vw;
+    margin: 2vh 1vw;
+    padding: 2vh 2vw;
+    border-radius: 8px;
+    font-size: 18px;
+    border: 1px solid rgb(203, 201, 201);
+}
+
+.cartProduct-data-div{
+    /* display: flex;
+    flex-direction: column; */
+    width: 13vw;
+}
+.cartProduct-title{
+    font-size: 24px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    color: rgb(59, 59, 59);
+}
+.cartProduct-descripition{
+    font-size: 10px;
+}
+
+.cartProduct-Price{
+    font-size: 24px;
+    align-self: center;
+    color: green;
+    width: 9vw;
+}
+
+.cartProduct-quantity {
+    align-self: center;
+    width: 9vw;
+    font-size: 24px;
+
+}
+
+.cartProduct-removeBtn {
+    align-self: center;
+    cursor: pointer;
+
+    color: rgb(196, 3, 3);
+    background-color: white;
+    text-align: center;
+    padding: 0.5vh 1vw;
+    border-radius: 4px;
+    margin-top: 1vh;
+    border : 0.5px solid rgb(196, 3, 3);
+    transition: all 0.2s ease-out;
+}
+
+.cartProduct-removeBtn:hover {
+    color: white;
+    background-color: rgb(196, 3, 3);
 }

@@ -21,13 +21,13 @@ async function getAllProducts(req , res){
 }
 
 async function addProduct(req , res){
-    const { title , description , sellerName , sellerId , price , minQuantity } = req.body;
+    const { title , description , sellerName , sellerId , price , minQuantity , testQuantity , testQuantityPrice } = req.body;
     console.log(sellerName)
     try{
         if(sellerId !== req.userId ) 
             throw Error("Incorrect sellerId , you don't have the authorization to add products to this Id");
 
-        const product = await Product.create({title , description  , sellerId , sellerName , price , minQuantity});
+        const product = await Product.create({title , description  , sellerId , sellerName , price , minQuantity , testQuantity , testQuantityPrice});
         console.log(product)
         res.json(product);
     }catch(error){
