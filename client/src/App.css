@@ -72,6 +72,7 @@
 .productListingPage-product-description{
     color: rgb(153, 151, 151);
     font-size: 16px;
+    overflow: hidden;
 }
 .productListingPage-product-description{
     height: 7vh;
@@ -96,6 +97,7 @@
     margin-top: 2vh;
 }
 .productListingPage-product-AddToCart{
+    cursor: pointer;
     margin-top: 5vh;
     border: 0.5px solid rgb(196, 3, 3);
     text-align: center;
