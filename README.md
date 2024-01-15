@@ -1,7 +1,9 @@
 First of all run the frontend by npm run dev
 
-Secondly go cd server and then
-npm start
+Secondly go to server/.env , and add your MONGO_URI 
+then in terminal ,
+cd server 
+npm run dev 
 to run the express server
 
 Thirdle to run the flask server go
