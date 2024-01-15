@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Url from "../../../url"
 import useGet from "../Hooks/useGet";
 import useUserContext from "../Hooks/useUserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductListing() {
   const { token } = useUserContext();
@@ -47,6 +48,7 @@ export default function ProductListing() {
 function Product({ product }) {
 
   const { dispatch } = useUserContext();
+  const Navigate = useNavigate();
 
   const [quantity , setQuantity ] = useState(product.minQuantity)
   const [price , setPrice ] = useState(product.price);
@@ -61,10 +63,12 @@ function Product({ product }) {
   }
   function handleAddTocart(){
     dispatch({type : "addToCart" , payload : {...product , quantity}});
+    Navigate('/cart')
   }
 
   function handleTestQuantity(){
     dispatch({type : "addToCart" , payload : {...product , price : product.testQuantityPrice , quantity : product.testQuantity , testItem : true}})
+    Navigate('/cart')
   }
 
   return (
@@ -80,7 +84,7 @@ function Product({ product }) {
       </p>
       <div className="productListingPage-product-quantity">
         <p className="minus-btn" onClick={handleSubtQuantity}>-</p>
-        {quantity} gm
+        {quantity} Kg
         <p className="add-btn"onClick={handleAddQuantity} >+</p>
       </div>
       <p className="productListingPage-product-price">
