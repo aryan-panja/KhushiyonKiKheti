@@ -13,3 +13,5 @@ cd..
 cd..
 python app.py 
 to run the flas server
+
+Also add your own api keys to run the project
