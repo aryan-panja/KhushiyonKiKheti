@@ -190,7 +190,7 @@
     margin: 2vh 1vw;
     padding: 2vh 2vw;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 14px;
     border: 1px solid rgb(203, 201, 201);
 }
 
@@ -206,7 +206,7 @@
     color: rgb(59, 59, 59);
 }
 .cartProduct-descripition{
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .cartProduct-Price{
@@ -226,7 +226,7 @@
 .cartProduct-removeBtn {
     align-self: center;
     cursor: pointer;
-
+    font-size: 18px;
     color: rgb(196, 3, 3);
     background-color: white;
     text-align: center;

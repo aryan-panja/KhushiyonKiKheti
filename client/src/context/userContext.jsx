@@ -60,8 +60,6 @@ export function handleReducerHook(prevState, action) {
             console.log(newData);
             return newData;
         }
-
-        default:
         case "setWeatherData":{
             console.log('Weather Data is set');
             console.log(action.payload);
