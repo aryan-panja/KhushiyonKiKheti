@@ -65,7 +65,7 @@ const PredictCrops = () => {
 
     return (
         <div className="ml-predictor-form-container">
-            <h2>ML Predictor Form</h2>
+            <h2>Sow With Me</h2>
             <table>
                 <tbody>
                     <tr>

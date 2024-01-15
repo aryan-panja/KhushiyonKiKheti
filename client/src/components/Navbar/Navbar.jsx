@@ -23,7 +23,7 @@ const Navbar = () => {
           <Link to="/cart">Shopping Cart</Link>
         </li>
         <li>
-          <Link to="/chatbot">Talk With AI</Link>
+          <Link to="/chatbot">किसान मित्र</Link>
         </li>
         {
           user?.isSeller && (
