@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
-import { RegisterAPI } from "../API/authApi";
+import { RegisterAPI, GoogleSignInApi } from "../API/authApi";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SignUp() {
   const { dispatch } = useUserContext();
@@ -12,6 +13,13 @@ export default function SignUp() {
   const phoneNumberRef = useRef();
   const isSellerRef = useRef();
   const [isLoading, setisLoading] = useState(false);
+
+  const SuccessNotify = () => {
+    toast.success("Login Succesfull");
+  };
+  const ErrorNotify = () => {
+    toast.error("Login Failed");
+  };
 
   async function handleSignUp(event) {
     event.preventDefault();
@@ -49,47 +57,55 @@ export default function SignUp() {
     // } else {
     //   seterror(json.message);
     // }
-    const response = await RegisterAPI(userData.email, userData.password);
-    console.log(response);
+    try {
+      const response = await RegisterAPI(userData.email, userData.password);
+      console.log(response);
+      SuccessNotify();
+    } catch (error) {
+      ErrorNotify();
+    }
   }
 
   return (
-    <form className="signupPage-div">
-      <p className="signupPage-heading">Create Account</p>
+    <div id="signUp">
+      <form className="signupPage-div">
+        <p className="signupPage-heading">Create Account</p>
 
-      <input type="text" id="userName" placeholder="Name" ref={nameRef} />
+        <input type="text" id="userName" placeholder="Name" ref={nameRef} />
 
-      <input type="email" id="email" placeholder="Email" ref={emailRef} />
+        <input type="email" id="email" placeholder="Email" ref={emailRef} />
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        ref={passwordRef}
-      />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          ref={passwordRef}
+        />
 
-      <input
-        type="text"
-        id="userAddress"
-        placeholder="Address"
-        ref={addressRef}
-      />
+        <input
+          type="text"
+          id="userAddress"
+          placeholder="Address"
+          ref={addressRef}
+        />
 
-      <input
-        type="number"
-        id="phoneNumber"
-        placeholder="Phone number"
-        ref={phoneNumberRef}
-      />
+        <input
+          type="number"
+          id="phoneNumber"
+          placeholder="Phone number"
+          ref={phoneNumberRef}
+        />
 
-      <select id="isSeller" ref={isSellerRef}>
-        <option value="Buyer">Buyer</option>
-        <option value="Seller">Seller</option>
-      </select>
+        <select id="isSeller" ref={isSellerRef}>
+          <option value="Buyer">Buyer</option>
+          <option value="Seller">Seller</option>
+        </select>
 
-      <button disabled={isLoading} onClick={handleSignUp}>
-        SignUp
-      </button>
-    </form>
+        <button disabled={isLoading} onClick={handleSignUp}>
+          SignUp
+        </button>
+      </form>
+      <button id="google">Sign In using Google</button>
+    </div>
   );
 }

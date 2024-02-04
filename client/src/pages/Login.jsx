@@ -3,6 +3,7 @@ import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../API/authApi";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const { dispatch } = useUserContext();
@@ -10,6 +11,17 @@ export default function Login() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const SuccessNotify = () => {
+    toast.success("Login Succesfull");
+  };
+  const ErrorNotify = () => {
+    toast.error("Login Failed");
+  };
+  const clearFields = () => {
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+  };
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -29,9 +41,15 @@ export default function Login() {
     // });
     // const json = await response.json();
 
-    const response = await LoginAPI(userData.email, userData.password);
-    console.log(response);
-
+    try {
+      const response = await LoginAPI(userData.email, userData.password);
+      console.log(response);
+      SuccessNotify();
+      //* clearFields();
+    } catch (error) {
+      ErrorNotify();
+      clearFields();
+    }
     // const json = {};
 
     // if (response) {
