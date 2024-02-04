@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { UserContextProvider } from './context/userContext.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { UserContextProvider } from "./context/userContext.jsx";
+import { app } from "./firebaseConfig.js";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserContextProvider>
       <App />
     </UserContextProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
