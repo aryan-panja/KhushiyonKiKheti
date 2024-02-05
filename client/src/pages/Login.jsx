@@ -3,7 +3,10 @@ import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../API/authApi";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
+import { auth } from "../firebaseConfig";
 
 export default function Login() {
   const { dispatch } = useUserContext();
@@ -22,6 +25,18 @@ export default function Login() {
     emailRef.current.value = "";
     passwordRef.current.value = "";
   };
+  let navigate = useNavigate();
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (res) => {
+  //     console.log("Login: ", res?.accessToken);
+  //     const user = {
+  //       email: res.email,
+  //       uid: res.uid,
+  //       displayName: res.displayName,
+  //     };
+  //   });
+  // }, []);
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -43,21 +58,28 @@ export default function Login() {
 
     try {
       const response = await LoginAPI(userData.email, userData.password);
-      console.log(response);
       SuccessNotify();
-      //* clearFields();
+      clearFields();
+
+      if (response) {
+        const json = {
+          email: response.user.email,
+          uid: response.user.uid,
+        };
+        console.log(json);
+        localStorage.setItem("USER", JSON.stringify(json));
+        dispatch({ type: "LOGIN", payload: json });
+      }
     } catch (error) {
       ErrorNotify();
       clearFields();
     }
-    // const json = {};
 
     // if (response) {
     //   console.log(json);
-    //   // localStorage.setItem("USER", JSON.stringify(json));
-    //   // dispatch({ type: "LOGIN", payload: json });
-    //   // emailRef.current.value = "";
-    //   // passwordRef.current.value = "";
+    //   dispatch({ type: "LOGIN", payload: json });
+    //   emailRef.current.value = "";
+    //   passwordRef.current.value = "";
     // } else {
     // }
   }
