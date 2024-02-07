@@ -6,7 +6,7 @@ export function handleReducerHook(prevState, action) {
   switch (action.type) {
     case "LOGIN":
       console.log("login");
-      // localStorage.setItem("USER", JSON.stringify(json));
+      console.log({ ...prevState, ...action.payload });
       return { ...prevState, ...action.payload };
     case "LOGOUT":
       console.log("logout");
@@ -78,22 +78,24 @@ export function handleReducerHook(prevState, action) {
 
 export function UserContextProvider({ children }) {
   const [state, dispatch] = useReducer(handleReducerHook, {
-    user: null,
-    token: null,
-    location: {
-      city: "jalandhar",
-      state: "punjab",
-      country: "india",
-    },
-    cart: [],
-    temperature: 25,
-    weatherData: null,
-    mlPrediction: null,
-    cart: [],
+    // user: null,
+    // token: null,
+    // location: {
+    //   city: "jalandhar",
+    //   state: "punjab",
+    //   country: "india",
+    // },
+    // cart: [],
+    // temperature: 25,
+    // weatherData: null,
+    // mlPrediction: null,
+    email: null,
+    uid: null,
   });
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("USER"));
     if (userData) {
+      console.log("From useEffect at 98");
       dispatch({ type: "LOGIN", payload: userData });
     }
   }, []);

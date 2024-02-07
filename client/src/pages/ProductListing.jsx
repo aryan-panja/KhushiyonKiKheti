@@ -12,11 +12,11 @@ export default function ProductListing() {
   const [Products, setProducts] = useState([]);
   let navigate = useNavigate();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (res) => {
-      console.log("Product listing: ", res?.accessToken);
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (res) => {
+  //     console.log("Product listing: ", res?.accessToken);
+  //   });
+  // }, []);
 
   useEffect(() => {
     async function fetchingData() {

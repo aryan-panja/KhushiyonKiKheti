@@ -15,10 +15,10 @@ export default function SignUp() {
   const [isLoading, setisLoading] = useState(false);
 
   const SuccessNotify = () => {
-    toast.success("Login Succesfull");
+    toast.success("SignUp Succesfull");
   };
   const ErrorNotify = () => {
-    toast.error("Login Failed");
+    toast.error("Failed to SignIn");
   };
 
   async function handleSignUp(event) {
