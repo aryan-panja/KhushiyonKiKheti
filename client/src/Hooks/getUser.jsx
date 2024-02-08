@@ -5,6 +5,7 @@ const GetUser = async () => {
   const value = onAuthStateChanged(auth, (user) => {
     if (user) {
       // this means that the user is signed in
+
       console.log(user);
     } else {
       // this means that the user is signed out

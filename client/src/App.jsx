@@ -23,6 +23,7 @@ import Footer from "./components/Footer/Footer";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { userContext } from "./context/userContext";
+import Profile from "./pages/Profile";
 
 function App() {
   const { uid } = useUserContext();
@@ -39,6 +40,7 @@ function App() {
             uid ? <Navigate to="/Home" /> : <Navigate to="/user/login" />
           }
         />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/Home"
           element={uid ? <ProductListing /> : <Navigate to="/user/login" />}
