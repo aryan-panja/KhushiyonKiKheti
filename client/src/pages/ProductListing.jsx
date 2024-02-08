@@ -49,7 +49,7 @@ export default function ProductListing() {
           ))}
         </div>
       ) : (
-        "Page is Loading"
+        "Page is Loading...."
       )}
     </div>
   );

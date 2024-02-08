@@ -78,17 +78,6 @@ export function handleReducerHook(prevState, action) {
 
 export function UserContextProvider({ children }) {
   const [state, dispatch] = useReducer(handleReducerHook, {
-    // user: null,
-    // token: null,
-    // location: {
-    //   city: "jalandhar",
-    //   state: "punjab",
-    //   country: "india",
-    // },
-    // cart: [],
-    // temperature: 25,
-    // weatherData: null,
-    // mlPrediction: null,
     email: null,
     uid: null,
   });

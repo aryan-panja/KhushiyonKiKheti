@@ -3,6 +3,9 @@ import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
 import { RegisterAPI, GoogleSignInApi } from "../API/authApi";
 import { ToastContainer, toast } from "react-toastify";
+import { GetUser } from "../Hooks/getUser";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebaseConfig.js";
 
 export default function SignUp() {
   const { dispatch } = useUserContext();
@@ -59,7 +62,20 @@ export default function SignUp() {
     // }
     try {
       const response = await RegisterAPI(userData.email, userData.password);
-      console.log(response);
+      // console.log(response.user);
+
+      const resObject = {
+        email: response.user.email,
+        uid: response.user.uid,
+        accessToken: response.user.stsTokenManager.accessToken,
+        refreshToken: response.user.stsTokenManager.refreshToken,
+      };
+
+      // document.cookie();
+
+      localStorage.setItem("USER", JSON.stringify(resObject));
+      dispatch({ type: "LOGIN", payload: resObject });
+
       SuccessNotify();
     } catch (error) {
       ErrorNotify();
