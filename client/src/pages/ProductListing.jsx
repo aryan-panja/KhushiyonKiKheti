@@ -5,6 +5,8 @@ import useUserContext from "../Hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { collection, getDocs, query } from "firebase/firestore";
+import { dataBase } from "../firebaseConfig";
 
 export default function ProductListing() {
   const { token } = useUserContext();
@@ -12,31 +14,50 @@ export default function ProductListing() {
   const [Products, setProducts] = useState([]);
   let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (res) => {
-  //     console.log("Product listing: ", res?.accessToken);
-  //   });
-  // }, []);
+  const getAllProducts = async () => {
+    const querySnapshot = await getDocs(collection(dataBase, "Products"));
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.id, doc.data(), doc);
+    // });
+    const temp = [];
+    querySnapshot.forEach((e) => {
+      temp.push(e.data());
+      console.log(e.data(), "A");
+    });
+    temp.map((e) => console.log(e));
 
+    setProducts(temp);
+
+    temp.map((a) => {
+      console.log(a.Name);
+    });
+  };
   useEffect(() => {
-    async function fetchingData() {
-      const response = await fetch(Url.serverUrl + "/product/allProducts", {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const json = await response.json();
+    setIsLoading(true);
+    getAllProducts();
+    if (Products.length > 0) setIsLoading(false);
+    setIsLoading(false);
+  }, []);
 
-      if (response.ok) {
-        setProducts(json);
-        setIsLoading(false);
-      } else {
-        console.log(json);
-      }
-    }
-    if (token) fetchingData();
-  }, [token]);
+  // useEffect(() => {
+  //   async function fetchingData() {
+  //     const response = await fetch(Url.serverUrl + "/product/allProducts", {
+  //       headers: {
+  //         "content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const json = await response.json();
+
+  //     if (response.ok) {
+  //       setProducts(json);
+  //       setIsLoading(false);
+  //     } else {
+  //       console.log(json);
+  //     }
+  //   }
+  //   if (token) fetchingData();
+  // }, [token]);
 
   // setIsLoading(false);
 
@@ -45,7 +66,10 @@ export default function ProductListing() {
       {!isLoading ? (
         <div className="productListingPage-container">
           {Products.map((product) => (
-            <Product product={product} key={product._id} />
+            <>
+              <Product product={product} key={product._id} />
+              {/* <div>{product.Name}</div> */}
+            </>
           ))}
         </div>
       ) : (
@@ -67,8 +91,10 @@ function Product({ product }) {
     setQuantity((prev) => prev + 1);
   }
   function handleSubtQuantity() {
-    setPrice((prev) => (prev * (quantity - 1)) / quantity);
-    setQuantity((prev) => prev - 1);
+    if (quantity > 1) {
+      setPrice((prev) => (prev * (quantity - 1)) / quantity);
+      setQuantity((prev) => prev - 1);
+    }
   }
   function handleAddTocart() {
     dispatch({ type: "addToCart", payload: { ...product, quantity } });

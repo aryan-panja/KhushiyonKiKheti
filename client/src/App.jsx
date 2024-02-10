@@ -62,7 +62,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route
           path="/cart"
-          element={uid ? <Cart /> : <Navigate to="/user/login" />}
+          element={uid ? <ProductListing /> : <Navigate to="/user/login" />}
         />
         {/* <Route
           path="/chatbot"
