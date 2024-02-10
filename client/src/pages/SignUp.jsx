@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { GetUser } from "../Hooks/getUser";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig.js";
+import { doc, setDoc } from "firebase/firestore";
+import { dataBase } from "../firebaseConfig.js";
 
 export default function SignUp() {
   const { dispatch } = useUserContext();
@@ -27,9 +29,6 @@ export default function SignUp() {
   async function handleSignUp(event) {
     event.preventDefault();
     // setisLoading(true);
-
-    // console.log(emailRef.current.value);
-
     const userData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -40,7 +39,6 @@ export default function SignUp() {
     // console.log(isSellerRef.current.value);
     // if (isSellerRef.current.value == "Seller") userData.isSeller = true;
     // else userData.isSeller = false;
-
     // const url = Url.serverUrl + "/user/signup";
     // const response = await fetch(url, {
     //   method: "POST",
@@ -62,8 +60,6 @@ export default function SignUp() {
     // }
     try {
       const response = await RegisterAPI(userData.email, userData.password);
-      // console.log(response.user);
-
       const resObject = {
         email: response.user.email,
         uid: response.user.uid,
@@ -75,8 +71,14 @@ export default function SignUp() {
 
       localStorage.setItem("USER", JSON.stringify(resObject));
       dispatch({ type: "LOGIN", payload: resObject });
-
       SuccessNotify();
+      await setDoc(doc(dataBase, "Users", resObject.uid), {
+        name: userData.name,
+        address: userData.address,
+        phoneNumber: userData.phoneNumber,
+        email: userData.email,
+        // cart:
+      });
     } catch (error) {
       ErrorNotify();
     }
