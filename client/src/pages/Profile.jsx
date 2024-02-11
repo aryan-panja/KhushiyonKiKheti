@@ -2,23 +2,31 @@ import React, { useEffect, useState } from "react";
 import "../Styles/Profile.css";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
+import useUserContext from "../Hooks/useUserContext";
 
 const Profile = () => {
   const [userData, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { uid } = useUserContext();
+  console.log(uid, " :This UID is from the userContext");
+  // Here i had 2 options to either use the data of the localStorage or to use the UID from the userContext()
 
   const getData = async () => {
-    const uid = JSON.parse(localStorage.getItem("USER")).uid;
     const docRef = doc(dataBase, "Users", uid);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data());
     console.log(docSnap.data());
+    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     getData();
   }, []);
 
-  return (
+  return loading ? (
+    <div>Loading Animation</div>
+  ) : (
     <div id="main">
       <div id="profile">
         <div id="left">

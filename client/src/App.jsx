@@ -43,7 +43,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route
           path="/Home"
-          element={uid ? <ProductListing /> : <Navigate to="/user/login" />}
+          element={uid ? <Profile /> : <Navigate to="/user/login" />}
         />
         <Route
           path="/user/login"
@@ -53,12 +53,11 @@ function App() {
           path="/user/signup"
           element={!uid ? <SignUp /> : <Navigate to="/" />}
         />
-        {/* <Route
+        <Route
           path="/add-product"
-          element={
-            user?.isSeller ? <AddProductPage /> : <Navigate to="/user/login" />
-          }
-        /> */}
+          // element={uid ? <AddProductPage /> : <Navigate to="/user/login" />}
+          element={<AddProductPage />}
+        />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route
           path="/cart"
