@@ -3,8 +3,13 @@ import "../Styles/Profile.css";
 import { doc, getDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 import useUserContext from "../Hooks/useUserContext";
+import { reload, signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [userData, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const { uid } = useUserContext();
@@ -17,6 +22,22 @@ const Profile = () => {
     setUser(docSnap.data());
     console.log(docSnap.data());
     setLoading(false);
+  };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.clear();
+        toast.success("LogOut Successful");
+      })
+      .catch((error) => {
+        console.log("Failed to LogOut");
+        toast.error("LogOut Failed!");
+      });
+    navigate(0);
+
+    //! are these any types of security issues in this,
+    //! localStorage don't seems to be that safe and reliable
   };
 
   useEffect(() => {
@@ -73,11 +94,12 @@ const Profile = () => {
           </div>
           <div className="row">
             <div className="key">Account Type: </div>
-            <div className="value">Seller</div>
+            <div className="value">{userData.seller}</div>
             <div className="edit">
               <button className="editBtn">EDIT</button>
             </div>
           </div>
+          <button onClick={logOut}>LOGOUT</button>
         </div>
       </div>
     </div>

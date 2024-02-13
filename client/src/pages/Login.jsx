@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from "../firebaseConfig";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function Login() {
   const { dispatch } = useUserContext();
@@ -41,11 +42,6 @@ export default function Login() {
   async function handleLogin(event) {
     event.preventDefault();
 
-    const userData = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-
     // const url = Url.serverUrl + "/user/login";
     // const response = await fetch(url, {
     //   method: "POST",
@@ -57,6 +53,10 @@ export default function Login() {
     // const json = await response.json();
 
     try {
+      const userData = {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      };
       const response = await LoginAPI(userData.email, userData.password);
       SuccessNotify();
       clearFields();
@@ -84,19 +84,40 @@ export default function Login() {
     // }
   }
 
+  async function forgotPassword(event) {
+    const userData = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    event.preventDefault();
+    toast.info("Function Disabled for Testing Purposes");
+    // sendPasswordResetEmail(auth, userData.email)
+    //   .then(() => {
+    //     console.log("Forgot Password Email Sent to ", userData.email);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error sending Forgot Password: ", error);
+    //   });
+
+    // console.log("Forgot Password");
+  }
+
   return (
-    <form className="loginPage-div">
-      <p className="loginPage-heading">Login to Your Account</p>
-      <input type="text" id="email" placeholder="Email" ref={emailRef} />
+    <div>
+      <form className="loginPage-div">
+        <p className="loginPage-heading">Login to Your Account</p>
+        <input type="text" id="email" placeholder="Email" ref={emailRef} />
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        ref={passwordRef}
-      />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          ref={passwordRef}
+        />
 
-      <button onClick={handleLogin}>Submit</button>
-    </form>
+        <button onClick={handleLogin}>Submit</button>
+        <button onClick={forgotPassword}>Forgot Password</button>
+      </form>
+    </div>
   );
 }

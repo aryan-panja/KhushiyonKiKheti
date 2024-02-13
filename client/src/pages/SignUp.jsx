@@ -35,6 +35,7 @@ export default function SignUp() {
       name: nameRef.current.value,
       address: addressRef.current.value,
       phoneNumber: phoneNumberRef.current.value,
+      seller: isSellerRef.current.value,
     };
     // console.log(isSellerRef.current.value);
     // if (isSellerRef.current.value == "Seller") userData.isSeller = true;
@@ -71,12 +72,15 @@ export default function SignUp() {
 
       localStorage.setItem("USER", JSON.stringify(resObject));
       dispatch({ type: "LOGIN", payload: resObject });
+      toast.info(userData.seller);
+      console.log(userData.seller);
       SuccessNotify();
       await setDoc(doc(dataBase, "Users", resObject.uid), {
         name: userData.name,
         address: userData.address,
         phoneNumber: userData.phoneNumber,
         email: userData.email,
+        seller: userData.seller,
         // cart:
       });
     } catch (error) {
@@ -115,10 +119,11 @@ export default function SignUp() {
         />
 
         <select id="isSeller" ref={isSellerRef}>
-          <option value="Buyer">Buyer</option>
+          <option value="Buyer" selected>
+            Buyer
+          </option>
           <option value="Seller">Seller</option>
         </select>
-
         <button disabled={isLoading} onClick={handleSignUp}>
           SignUp
         </button>
