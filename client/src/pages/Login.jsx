@@ -90,16 +90,16 @@ export default function Login() {
       password: passwordRef.current.value,
     };
     event.preventDefault();
-    toast.info("Function Disabled for Testing Purposes");
-    // sendPasswordResetEmail(auth, userData.email)
-    //   .then(() => {
-    //     console.log("Forgot Password Email Sent to ", userData.email);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error sending Forgot Password: ", error);
-    //   });
+    // toast.info("Function Disabled for Testing Purposes");
+    sendPasswordResetEmail(auth, userData.email)
+      .then(() => {
+        console.log("Forgot Password Email Sent to ", userData.email);
+      })
+      .catch((error) => {
+        console.log("Error sending Forgot Password: ", error);
+      });
 
-    // console.log("Forgot Password");
+    console.log("Forgot Password");
   }
 
   return (
