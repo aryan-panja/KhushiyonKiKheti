@@ -1,24 +1,44 @@
-/* LocationComponent.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  font-family: 'Roboto';
+}
+
 
 .footer-location {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
+  background-color: #E5FFE7;
+  color: black;
+  padding: 2vh 2vw;
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
+  justify-content: space-between;
+}
+
+
+.footer-title {
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.footer-location:hover {
-  background-color: #555;
+.footer-title>img {
+  height: 38px;
+  margin-right: 1vw;
 }
 
-.footer-location > p {
-  color: #fff;
+.footer-title>p {
+  color: black;
+  font-size: 25px;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-style: italic;
 }
 
-
-  
+.footer-info {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-right: 5vw;
+}
