@@ -1,29 +1,41 @@
-/* src/components/Navbar.css */
-
 .navbar {
-    background-color: #333;
-    padding: 15px;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  li {
-    margin-right: 20px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    color: #ffd700; /* Change the color on hover as per your design */
-  }
-  
+  display: flex;
+  height: 10vh;
+  padding: 0 2vw;
+  justify-content: space-between;
+  background-color: #22577A;
+  align-items: center;
+  gap: 10vw;
+}
+
+.navbar-title {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title>img {
+  height: 38px;
+  margin-right: 1vw;
+}
+
+.navbar-title>div {
+  color: white;
+  font-size: 20px;
+}
+
+.navbar-title>div>p {
+  color: white;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 4vw;
+}
+
+.navbar-links>a {
+  color: white;
+  text-decoration: none;
+}
