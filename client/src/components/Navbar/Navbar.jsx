@@ -11,7 +11,7 @@ import useUserContext from '../../Hooks/useUserContext';
 
 const Navbar = () => {
 
-  const { user, dispatch } = useUserContext();
+  const { uid, dispatch } = useUserContext();
   const navlinksRef = useRef();
 
   function handleLogout() {
@@ -21,23 +21,17 @@ const Navbar = () => {
 
   function handleMobileNav() {
     if (navlinksRef.current.style.display == 'flex') {
-      navlinksRef.current.style.transform = 'translateY(-100%)';
-      setTimeout(() => navlinksRef.current.style.display = 'none', 1000)
-
-
-
+      navlinksRef.current.style.transform = 'translateX(100%)';
+      setTimeout(() => navlinksRef.current.style.display = 'none', 600)
     }
     else {
       navlinksRef.current.style.display = 'flex';
-      setTimeout(() => navlinksRef.current.style.transform = 'translateY(0%)', 50)
+      setTimeout(() => navlinksRef.current.style.transform = 'translateX(0%)', 50)
     }
 
 
   }
 
-  useEffect(() => {
-    console.log(user)
-  })
 
   return (
     <nav className="navbar">
@@ -61,13 +55,13 @@ const Navbar = () => {
         <Link to="/cart">Shopping Cart</Link>
         <Link to="/chatbot">किसान मित्र</Link>
 
-        {user?.isSeller && (
+        {uid?.isSeller && (
           <>
             <Link to="/predict-crop">Predict Crop</Link>
             <Link to="/add-product">Add Product</Link>
           </>
         )}
-        {user ? (
+        {uid ? (
           <Link className="logoutButton" onClick={handleLogout}>Logout</Link>
 
         ) : (

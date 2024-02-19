@@ -43,7 +43,7 @@
 .navbar-links {
   display: flex;
   gap: 4vw;
-  transition: all 1s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 .navbar-links>a {
@@ -61,13 +61,14 @@
   .navbar {
     height: 8vh;
     padding: 0 4vw;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
     gap: 0px;
   }
 
   .navbar-links {
     display: none;
-    transform: translateY(-100%);
+    transform: translateX(100%);
     color: #22577A;
     top: 8vh;
     left: 0;
@@ -77,10 +78,14 @@
     align-items: center;
     justify-content: center;
     padding: 2vh 0;
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     flex-direction: column;
   }
+
+  /* .navbar-title {
+    z-index: 2;
+  } */
 
   .navbar-links>a {
     color: black;
