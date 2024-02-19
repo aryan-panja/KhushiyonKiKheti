@@ -131,15 +131,29 @@ function Product({ product }) {
     if (uid == null) Navigate("/");
     else {
       const docRef = doc(dataBase, "Carts", uid);
-      const CartsRef = collection(dataBase, "Carts");
-      const query1 = query(CartsRef, where("p_name", "==", product.title));
-      console.log("Query result: ", query1);
+      const productsRef = collection(dataBase, "Products");
+      // const CartsRef = collection(dataBase, "Carts");
+      // const query1 = query(
+      //   CartsRef,
+      //   where("Items", "array-contains", { name: "anush" })
+      // );
+      // console.log("Query result: ", query1);
 
-      const querySnapshot = await getDocs(query1)
-        .then(() => console.log("SUCCESS"))
-        .catch((error) => console.log("ERROR: ", error));
+      // const querySnapshot = await getDocs(query1);
+      // querySnapshot.forEach((doc) => {
+      //   console.log("Query Data: ", doc.data());
+      // });
+
+      const productQuery = query(
+        productsRef,
+        where("title", "==", product.title)
+      );
+      const querySnapshot = await getDocs(productQuery);
       querySnapshot.forEach((doc) => {
-        console.log("Query Data: ", doc.data(), " ", doc.id());
+        const docRef = doc.ref;
+        updateDoc(docRef, {
+          minQuantity: quantity,
+        });
       });
 
       await updateDoc(docRef, {
