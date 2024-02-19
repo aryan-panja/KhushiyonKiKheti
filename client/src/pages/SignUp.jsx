@@ -8,6 +8,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig.js";
 import { doc, setDoc } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig.js";
+import GooglePng from "../../public/Images/googlePng.webp"
+
+import "../Styles/AuthPages.css"
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const { dispatch } = useUserContext();
@@ -18,6 +22,7 @@ export default function SignUp() {
   const phoneNumberRef = useRef();
   const isSellerRef = useRef();
   const [isLoading, setisLoading] = useState(false);
+  const Navigate = useNavigate();
 
   const SuccessNotify = () => {
     toast.success("SignUp Succesfull");
@@ -94,7 +99,13 @@ export default function SignUp() {
   return (
     <div id="signUp">
       <form className="signupPage-div">
-        <p className="signupPage-heading">Create Account</p>
+        <p className="signupPage-heading">
+          Sign Up
+          <p>
+            To Access all the benefits
+          </p>
+        </p>
+
 
         <input type="text" id="userName" placeholder="Name" ref={nameRef} />
 
@@ -127,11 +138,20 @@ export default function SignUp() {
           </option>
           <option value="Seller">Seller</option>
         </select>
-        <button disabled={isLoading} onClick={handleSignUp}>
+        <button disabled={isLoading} onClick={handleSignUp} className="signup-btn">
           SignUp
         </button>
+
+        <button className="signup-btn" style={{ backgroundColor: 'white', border: '0.5px solid black' }}>
+          <img src={GooglePng} style={{ height: '2.5vh', marginRight: '8px' }} />
+          Sign In using Google
+        </button>
+
+        <p onClick={() => Navigate('/user/login')} style={{ cursor: 'pointer' }}>
+          Already have an Account, Login Here
+        </p>
+
       </form>
-      <button id="google">Sign In using Google</button>
     </div>
   );
 }

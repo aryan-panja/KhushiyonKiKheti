@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
+import "../Styles/LandingPage.css"
+
 export default function LandingPage() {
 
   const Navigate = useNavigate();
@@ -8,17 +10,20 @@ export default function LandingPage() {
     <div className="landingPage-div">
       <div className="landingPage-routes-div">
         <div className="landingPage-routes-headings">
-          Hi , Parth
+          Hi there 👋, 
+          <p className="landingPage-headings-desc-1">
+            I am Kishan your Farming Assitant
+          </p>
           <p className="landingPage-headings-desc">
             How can I help you today ?
           </p>
         </div>
         <div className="landingPage-routes">
-          <div className="landingPage-chatbot-route landingPage-route" onClick={()=>Navigate('/')}>
+          <div className="landingPage-chatbot-route landingPage-route" onClick={() => Navigate('/')}>
             Kissan Mitra (Chat Bot)
           </div>
 
-          <div className="landingPage-purchase-route landingPage-route" onClick={()=>Navigate('/')}>
+          <div className="landingPage-purchase-route landingPage-route" onClick={() => Navigate('/')}>
             Purchase From Essentials
           </div>
 

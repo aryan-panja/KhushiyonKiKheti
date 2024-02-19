@@ -1,0 +1,64 @@
+/* Landing Page */
+
+.landingPage-routes-div {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10vw;
+}
+
+.landingPage-routes-headings {
+  color: #22577A;
+  font-size: 50px;
+}
+
+.landingPage-headings-desc-1 {
+  color: #22577A;
+  font-size: 30px;
+  margin: 1vh 0;
+}
+
+.landingPage-headings-desc {
+  color: #22577A;
+  font-size: 25px;
+}
+
+.landingPage-routes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 4vh;
+}
+
+.landingPage-route {
+  font-size: 25px;
+  color: #22577A;
+  padding: 8px 2px;
+  border-radius: 20px;
+  width: 30vw;
+  height: auto;
+  text-align: center;
+  justify-self: center;
+  background-color: #80ED99;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.landingPage-route:hover {
+  transform: translateX(10%)
+}
+
+
+@media (max-width : 500px) {
+
+  .landingPage-routes-div {
+    margin-left: 0;
+    padding: 0 4vw;
+  }
+
+  .landingPage-route {
+    width: 100%;
+    border-radius: 10px
+  }
+
+}
