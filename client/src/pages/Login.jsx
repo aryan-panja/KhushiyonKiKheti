@@ -6,7 +6,7 @@ import { LoginAPI } from "../API/authApi";
 import { toast } from "react-toastify";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
-import { auth } from "../firebaseConfig";
+import { auth } from "../firebaseConfig.js";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function Login() {
