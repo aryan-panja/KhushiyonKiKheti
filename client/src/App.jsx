@@ -65,10 +65,10 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<ProductListing />} />
         <Route path="/order" element={<Cart2 />} />
-        {/* <Route
+        <Route
           path="/chatbot"
-          element={user?.isSeller ? <Llm /> : <Navigate to="/user/login" />}
-        /> */}
+          element={uid? <Llm /> : <Navigate to="/user/login" />}
+        />
         {/* <Route
           path="/predict-crop"
           element={

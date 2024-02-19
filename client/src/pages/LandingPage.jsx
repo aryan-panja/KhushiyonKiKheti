@@ -14,7 +14,7 @@ export default function LandingPage() {
           </p>
         </div>
         <div className="landingPage-routes">
-          <div className="landingPage-chatbot-route landingPage-route" onClick={()=>Navigate('/')}>
+          <div className="landingPage-chatbot-route landingPage-route" onClick={()=>Navigate('/chatbot')}>
             Kissan Mitra (Chat Bot)
           </div>
 
