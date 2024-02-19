@@ -83,6 +83,9 @@ export default function SignUp() {
         seller: userData.seller,
         // cart:
       });
+      await setDoc(doc(dataBase, "Carts", resObject.uid), {
+        items: {},
+      });
     } catch (error) {
       ErrorNotify();
     }

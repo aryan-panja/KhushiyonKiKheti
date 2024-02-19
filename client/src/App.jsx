@@ -25,6 +25,8 @@ import { useEffect } from "react";
 import { userContext } from "./context/userContext";
 import Profile from "./pages/Profile";
 import LandingPage from "./pages/LandingPage";
+import Cart2 from "./pages/Cart2";
+
 
 function App() {
   const { uid } = useUserContext();
@@ -61,10 +63,8 @@ function App() {
           element={<AddProductPage />}
         />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route
-          path="/cart"
-          element={uid ? <ProductListing /> : <Navigate to="/user/login" />}
-        />
+        <Route path="/cart" element={<ProductListing />} />
+        <Route path="/order" element={<Cart2 />} />
         {/* <Route
           path="/chatbot"
           element={user?.isSeller ? <Llm /> : <Navigate to="/user/login" />}

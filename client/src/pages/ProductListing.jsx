@@ -5,14 +5,36 @@ import useUserContext from "../Hooks/useUserContext";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { collection, getDocs, query } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  // query,
+  // query,
+  updateDoc,
+} from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
+import { userContext } from "../context/userContext";
 
 export default function ProductListing() {
   const { token } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [Products, setProducts] = useState([]);
   let navigate = useNavigate();
+  const { uid } = useUserContext();
+  console.log("APP.JSX: ", uid);
+
+  // const getSeller = async (uid) => {
+  //   const docRef = doc(dataBase, "Users", uid);
+  //   const docSnap = await getDoc(docRef);
+  //   if (docSnap.exists()) {
+  //     // console.log("Document data: ", docSnap.data().name);
+  //     return docSnap.data().name;
+  //   } else console.log("Error fetching the data");
+  // };
 
   const getAllProducts = async () => {
     const querySnapshot = await getDocs(collection(dataBase, "Products"));
@@ -20,22 +42,28 @@ export default function ProductListing() {
     //   console.log(doc.id, doc.data(), doc);
     // });
     const temp = [];
-    querySnapshot.forEach((e) => {
+    querySnapshot.forEach(async (e) => {
       temp.push(e.data());
-      console.log(e.data(), "A");
+      // console.log(e.data(), "A");
     });
-    temp.map((e) => console.log(e));
+    // temp.map((e) => console.log(e), "B");
 
     setProducts(temp);
 
-    temp.map((a) => {
-      console.log(a.Name);
-    });
+    // const
+
+    // temp.map((a) => {
+    //   console.log(a.Name, "temp");
+    // });
   };
   useEffect(() => {
     setIsLoading(true);
     getAllProducts();
-    if (Products.length > 0) setIsLoading(false);
+    // if (Products.length > 0) setIsLoading(false);
+    // Products.map((product) => {
+    //   product.seller = getSeller(product.seller).name;
+    //   console.log("Products: ", product.seller);
+    // });
     setIsLoading(false);
   }, []);
 
@@ -67,7 +95,7 @@ export default function ProductListing() {
         <div className="productListingPage-container">
           {Products.map((product) => (
             <>
-              <Product product={product} key={product._id} />
+              <Product product={product} />
               {/* <div>{product.Name}</div> */}
             </>
           ))}
@@ -80,6 +108,7 @@ export default function ProductListing() {
 }
 
 function Product({ product }) {
+  const { uid } = useUserContext();
   const { dispatch } = useUserContext();
   const Navigate = useNavigate();
 
@@ -96,9 +125,48 @@ function Product({ product }) {
       setQuantity((prev) => prev - 1);
     }
   }
-  function handleAddTocart() {
-    dispatch({ type: "addToCart", payload: { ...product, quantity } });
-    Navigate("/cart");
+  async function handleAddTocart() {
+    // dispatch({ type: "addToCart", payload: { ...product, quantity } });
+    // Navigate("/cart");
+    if (uid == null) Navigate("/");
+    else {
+      const docRef = doc(dataBase, "Carts", uid);
+      const productsRef = collection(dataBase, "Products");
+      // const CartsRef = collection(dataBase, "Carts");
+      // const query1 = query(
+      //   CartsRef,
+      //   where("Items", "array-contains", { name: "anush" })
+      // );
+      // console.log("Query result: ", query1);
+
+      // const querySnapshot = await getDocs(query1);
+      // querySnapshot.forEach((doc) => {
+      //   console.log("Query Data: ", doc.data());
+      // });
+
+      const productQuery = query(
+        productsRef,
+        where("title", "==", product.title)
+      );
+      const querySnapshot = await getDocs(productQuery);
+      querySnapshot.forEach((doc) => {
+        const docRef = doc.ref;
+        updateDoc(docRef, {
+          minQuantity: quantity,
+        });
+      });
+
+      await updateDoc(docRef, {
+        Items: arrayUnion({
+          p_name: product.title,
+          quantity: quantity,
+          price: price,
+          seller: product.seller,
+        }),
+      });
+      Navigate("/order");
+    }
+    console.log(uid);
   }
 
   function handleTestQuantity() {
@@ -116,9 +184,7 @@ function Product({ product }) {
 
   return (
     <div className="productListingPage-product" key={product._id}>
-      <p className="productListingPage-product-sellerName">
-        {product.sellerName}
-      </p>
+      <p className="productListingPage-product-sellerName">{product.seller}</p>
       <p className="productListingPage-product-title">{product.title}</p>
       <p className="productListingPage-product-description">
         {product.description}
