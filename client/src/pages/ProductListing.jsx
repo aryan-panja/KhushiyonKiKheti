@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { query, where } from "firebase/firestore";
+import "../Styles/ProductListingPage.css"
+
+
 import {
   arrayUnion,
   collection,
@@ -18,9 +21,9 @@ import {
 } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
+import SampleWheatImage from "../../public/Images/Sample Wheat Image.png"
 
 export default function ProductListing() {
-  const { token } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [Products, setProducts] = useState([]);
   let navigate = useNavigate();
@@ -187,38 +190,52 @@ function Product({ product }) {
 
   return (
     <div className="productListingPage-product" key={product._id}>
-      <p className="productListingPage-product-sellerName">
-        Sold By: {product.sellerName}
-      </p>
-      <p className="productListingPage-product-title">{product.title}</p>
-      <p className="productListingPage-product-description">
-        {product.description}
-      </p>
-      <div className="productListingPage-product-quantity">
-        <p className="minus-btn" onClick={handleSubtQuantity}>
-          -
-        </p>
-        {quantity} Kg
-        <p className="add-btn" onClick={handleAddQuantity}>
-          +
-        </p>
+
+      <div className="product-left-container">
+        <img src={SampleWheatImage} />
+
       </div>
-      <p className="productListingPage-product-price">₹{price}</p>
-      <p className="productListingPage-product-sellerName">
-        Remaining Quantity: {product.totalQuantity}
-      </p>
-      <p
-        className="productListingPage-product-AddToCart"
-        onClick={handleAddTocart}
-      >
-        Add
-      </p>
-      <p
-        className="productListingPage-product-testQuantity"
-        onClick={handleTestQuantity}
-      >
-        Test {product.testQuantity} KG for ₹ {product.testQuantityPrice}
-      </p>
+
+      <div className="product-right-container">
+        <p className="productListingPage-product-title">
+          {product.title}
+        </p>
+
+        <p className="productListingPage-product-description">
+          {product.description}
+        </p>
+
+        {/* <div className="productListingPage-product-quantity">
+          <p className="minus-btn" onClick={handleSubtQuantity}>
+            -
+          </p>
+          {quantity} Kg
+          <p className="add-btn" onClick={handleAddQuantity}>
+            +
+          </p>
+        </div> */}
+
+        <p className="productListingPage-product-price">₹{price}</p>
+        <p className="productListingPage-product-sellerName">
+          Sold By Parth
+        </p>
+        <p
+          className="productListingPage-product-viewProduct"
+          onClick={handleAddTocart}
+        >
+          View Product
+        </p>
+
+
+        {/* <p
+          className="productListingPage-product-testQuantity"
+          onClick={handleTestQuantity}
+        >
+          Test {product.testQuantity} KG for ₹ {product.testQuantityPrice}
+        </p> */}
+      </div>
+
+
     </div>
   );
 }

@@ -11,6 +11,9 @@ const Footer = () => {
         <img src={Icon} />
         <p className="footer-title-text">
           Khushiyon Ki Kheti
+          <p className="footer-title-desc">
+            An Initiative to help farmers grow
+          </p>
         </p>
       </div>
       <div className="footer-info">

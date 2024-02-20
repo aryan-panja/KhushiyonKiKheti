@@ -36,9 +36,32 @@
   font-style: italic;
 }
 
+.footer-title>p>p {
+  font-size: 10px;
+}
+
 .footer-info {
   display: flex;
   justify-items: center;
   align-items: center;
   padding-right: 5vw;
+}
+
+
+@media(max-width : 500px) {
+  .footer-location {
+    padding: 2vh 4vw;
+  }
+
+  .footer-info {
+    display: none;
+  }
+
+  .footer-title>img {
+    height: 45px;
+  }
+
+  .footer-title>p>p {
+    font-size: 15px;
+  }
 }

@@ -1,0 +1,84 @@
+.signupPage-div,
+.loginPage-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8vh 35vw;
+  padding: 5vh 5vw;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 10px 18px 0px rgba(207, 191, 207, 1);
+  -moz-box-shadow: 0px 10px 18px 0px rgba(207, 191, 207, 1);
+  box-shadow: 0px 10px 18px 0px rgba(207, 191, 207, 1);
+}
+
+.signupPage-heading,
+.loginPage-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 2vh;
+  color: #22577A;
+}
+
+.signupPage-heading>p,
+.loginPage-heading>p {
+  font-size: 16px;
+}
+
+.signupPage-div>input,
+select,
+.loginPage-div>input,
+select {
+  background-color: #E5FFE7;
+  height: 6vh;
+  width: 100%;
+  margin-bottom: 2vh;
+  font-size: 16px;
+  padding: 0 0.5vw;
+  border-radius: 5px;
+  border: 0.5px solid #E5FFE7;
+  outline: none;
+  color: #22577A;
+}
+
+.signupPage-div>input::placeholder,
+.loginPage-div>input::placeholder {
+  color: rgb(213, 213, 213);
+}
+
+.login-btn,
+.signup-btn,
+.forgot-pwd-btn {
+  background-color: #80ED99;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 1vh 0;
+  margin-bottom: 2vh;
+  color: #22577A;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.forgot-pwd-btn {}
+
+@media(max-width : 500px) {
+
+  .signupPage-div,
+  .loginPage-div {
+    margin: 4vh 4vw;
+    padding: 2vh 5vw;
+  }
+
+  .signupPage-div>input,
+  select,
+  .loginPage-div>input,
+  select {
+    padding: 0 2vw;
+  }
+}
