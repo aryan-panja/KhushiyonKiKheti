@@ -12,10 +12,10 @@ const Weather = () => {
     const fetchWeather = async () => {
       if (!location || !location.city || !location.state || !location.country) {
         console.error('Invalid or undefined location data.');
-        return;
+        return; 
       }
 
-      const weatherApiKey = 'API_KEY'; // Replace with your OpenWeatherMap API key
+      const weatherApiKey = 'c533fccf081b9e26f4d7813cbb1b0f66'; // Replace with your OpenWeatherMap API key
 
       try {
         // Construct the API request URL
@@ -30,7 +30,7 @@ const Weather = () => {
         }
 
         const weatherData = await weatherResponse.json();
-        console.log(weatherData); // Log the weather data for debugging
+        console.log("Weather.jsx : ", weatherData); // Log the weather data for debugging
         dispatch({ type: "setWeatherData", payload: weatherData })
         const temperatureInKelvin = weatherData.main.temp; // Temperature in Kelvin
         const temperatureInCelsius = temperatureInKelvin - 273.15; // Convert to Celsius

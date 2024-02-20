@@ -75,16 +75,16 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<ProductListing />} />
         <Route path="/order" element={<Cart2 />} />
-        {/* <Route
+        <Route
           path="/chatbot"
-          element={user?.isSeller ? <Llm /> : <Navigate to="/user/login" />}
-        /> */}
-        {/* <Route
+          element={uid? <Llm /> : <Navigate to="/user/login" />}
+        />
+        <Route
           path="/predict-crop"
           element={
-            user?.isSeller ? <PredictCrops /> : <Navigate to="/user/login" />
+            <PredictCrops />
           }
-        /> */}
+        /> 
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/weather" element={<Weather />} />
       </Routes>
