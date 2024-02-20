@@ -68,7 +68,7 @@
 
   .navbar-links {
     display: none;
-    transform: translateX(100%);
+    transform: translateY(-100%);
     color: #22577A;
     top: 8vh;
     left: 0;

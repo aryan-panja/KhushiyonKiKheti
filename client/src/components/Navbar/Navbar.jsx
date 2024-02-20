@@ -21,12 +21,12 @@ const Navbar = () => {
 
   function handleMobileNav() {
     if (navlinksRef.current.style.display == 'flex') {
-      navlinksRef.current.style.transform = 'translateX(100%)';
+      navlinksRef.current.style.transform = 'translateY(-100%)';
       setTimeout(() => navlinksRef.current.style.display = 'none', 600)
     }
     else {
       navlinksRef.current.style.display = 'flex';
-      setTimeout(() => navlinksRef.current.style.transform = 'translateX(0%)', 50)
+      setTimeout(() => navlinksRef.current.style.transform = 'translateY(0%)', 50)
     }
 
 

@@ -1,0 +1,141 @@
+.productListingPage-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5vh 10vw;
+  background-color: rgb(205, 205, 205);
+  border-radius: 8px;
+}
+
+.productListingPage-product {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 48vh;
+  width: 15vw;
+  margin: 4vh 3vw;
+  padding: 2vh 2vw;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.product-left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-left-container>img {
+  height: 20vh;
+}
+
+.productListingPage-product-sellerName,
+.productListingPage-product-description {
+  color: rgb(153, 151, 151);
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.productListingPage-product-description {
+  height: 4vh;
+}
+
+.productListingPage-product-title {
+  font-size: 26px;
+  margin: 0.8vh 0;
+}
+
+.productListingPage-product-quantity {
+  border: 0.5px solid rgb(229, 227, 227);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.3vh 0.4vw;
+}
+
+.minus-btn,
+.add-btn {
+  text-align: center;
+  cursor: pointer;
+  width: 4vw;
+}
+
+.productListingPage-product-price {
+  margin-top: 2vh;
+}
+
+.productListingPage-product-viewProduct {
+  cursor: pointer;
+  margin-top: 2vh;
+  border: 0.5px solid #80ED99;
+  text-align: center;
+  padding: 0.5vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  transition: all 0.2s ease-out;
+}
+
+.productListingPage-product-viewProduct:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+.productListingPage-product-testQuantity {
+  cursor: pointer;
+  margin-top: 1vh;
+  border: 0.5px solid rgb(196, 3, 3);
+  text-align: center;
+  padding: 0.5vh 0;
+  border-radius: 4px;
+  color: rgb(196, 3, 3);
+  transition: all 0.2s ease-out;
+}
+
+.productListingPage-product-testQuantity:hover {
+  background-color: rgb(196, 3, 3);
+  color: white;
+}
+
+.bottom-border {
+  display: none;
+}
+
+
+@media(max-width : 500px) {
+
+  .productListingPage-container {
+    background-color: white;
+    margin: 0px;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .productListingPage-product {
+    width: 100vw;
+    box-sizing: border-box;
+    height: 25vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 2vw;
+  }
+
+  .product-left-container {
+    width: 30vw;
+  }
+
+  .product-left-container>img {
+    width: 30vw;
+    object-fit: contain;
+  }
+
+  .product-right-container {
+    width: 50vw;
+    overflow: visible;
+  }
+
+  .productListingPage-product-description {
+    height: 2vh;
+  }
+}
