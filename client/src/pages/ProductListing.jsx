@@ -8,7 +8,6 @@ import { auth } from "../firebaseConfig";
 import { query, where } from "firebase/firestore";
 import "../Styles/ProductListingPage.css"
 
-
 import {
   arrayUnion,
   collection,
@@ -130,6 +129,7 @@ function Product({ product }) {
     }
   }
   async function handleAddTocart() {
+    console.log('add to cart function is called')
     // dispatch({ type: "addToCart", payload: { ...product, quantity } });
     // Navigate("/cart");
     if (uid == null) Navigate("/");
