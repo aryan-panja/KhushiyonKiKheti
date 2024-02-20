@@ -38,7 +38,7 @@ const Cart2 = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data().Items);
+      // console.log("Document data:", docSnap.data().Items);
       // setCart(docSnap.data().Items);
       // array = Object.entries(cart);
       // array.map((arr) => console.log(`${arr[0]} => ${arr[1]}`));

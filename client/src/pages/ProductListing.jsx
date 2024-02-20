@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { query, where } from "firebase/firestore";
+import "../Styles/ProductListingPage.css";
+import { Link } from "react-router-dom";
+
 import {
   arrayUnion,
   collection,
@@ -18,9 +21,9 @@ import {
 } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
+import SampleWheatImage from "../../public/Images/Sample Wheat Image.png";
 
 export default function ProductListing() {
-  const { token } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [Products, setProducts] = useState([]);
   let navigate = useNavigate();
@@ -107,8 +110,9 @@ export default function ProductListing() {
   );
 }
 
-function Product({ product }) {
+export function Product({ product }) {
   const { uid } = useUserContext();
+  const { userName } = useUserContext();
   const { dispatch } = useUserContext();
   const Navigate = useNavigate();
 
@@ -116,14 +120,17 @@ function Product({ product }) {
   const [price, setPrice] = useState(product.price);
 
   function handleAddQuantity() {
-    setPrice((prev) => (prev * (quantity + 1)) / quantity);
-    setQuantity((prev) => prev + 1);
+    setPrice((prev) => (+prev * (+quantity + 1)) / +quantity);
+    setQuantity((prev) => +prev + 1);
   }
   function handleSubtQuantity() {
     if (quantity > 1) {
-      setPrice((prev) => (prev * (quantity - 1)) / quantity);
-      setQuantity((prev) => prev - 1);
+      setPrice((prev) => (+prev * (+quantity - 1)) / +quantity);
+      setQuantity((prev) => +prev - 1);
     }
+  }
+  function viewProduct() {
+    Navigate("/viewProduct", { state: { product } });
   }
   async function handleAddTocart() {
     // dispatch({ type: "addToCart", payload: { ...product, quantity } });
@@ -152,8 +159,9 @@ function Product({ product }) {
       querySnapshot.forEach((doc) => {
         const docRef = doc.ref;
         updateDoc(docRef, {
-          minQuantity: quantity,
+          totalQuantity: doc.data().totalQuantity - quantity,
         });
+        // console.log("from the query's for each");
       });
 
       await updateDoc(docRef, {
@@ -161,7 +169,8 @@ function Product({ product }) {
           p_name: product.title,
           quantity: quantity,
           price: price,
-          seller: product.seller,
+          seller: product.sellerName,
+          sellerID: product.seller,
         }),
       });
       Navigate("/order");
@@ -184,33 +193,45 @@ function Product({ product }) {
 
   return (
     <div className="productListingPage-product" key={product._id}>
-      <p className="productListingPage-product-sellerName">{product.seller}</p>
-      <p className="productListingPage-product-title">{product.title}</p>
-      <p className="productListingPage-product-description">
-        {product.description}
-      </p>
-      <div className="productListingPage-product-quantity">
-        <p className="minus-btn" onClick={handleSubtQuantity}>
-          -
-        </p>
-        {quantity} Kg
-        <p className="add-btn" onClick={handleAddQuantity}>
-          +
-        </p>
+      <div className="product-left-container">
+        <img src={SampleWheatImage} />
       </div>
-      <p className="productListingPage-product-price">₹{price}</p>
-      <p
-        className="productListingPage-product-AddToCart"
-        onClick={handleAddTocart}
-      >
-        Add
-      </p>
-      <p
-        className="productListingPage-product-testQuantity"
-        onClick={handleTestQuantity}
-      >
-        Test {product.testQuantity} KG for ₹ {product.testQuantityPrice}
-      </p>
+
+      <div className="product-right-container">
+        <p className="productListingPage-product-title">{product.title}</p>
+
+        <p className="productListingPage-product-description">
+          {product.description}
+        </p>
+
+        {/* <div className="productListingPage-product-quantity">
+          <p className="minus-btn" onClick={handleSubtQuantity}>
+            -
+          </p>
+          {quantity} Kg
+          <p className="add-btn" onClick={handleAddQuantity}>
+            +
+          </p>
+        </div> */}
+
+        <p className="productListingPage-product-price">₹{price}</p>
+        <p className="productListingPage-product-sellerName">
+          Sold By :{product.sellerName}
+        </p>
+        <p
+          className="productListingPage-product-viewProduct"
+          onClick={viewProduct}
+        >
+          View Product
+        </p>
+
+        {/* <p
+          className="productListingPage-product-testQuantity"
+          onClick={handleTestQuantity}
+        >
+          Test {product.testQuantity} KG for ₹ {product.testQuantityPrice}
+        </p> */}
+      </div>
     </div>
   );
 }

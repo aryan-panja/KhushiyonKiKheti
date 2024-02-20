@@ -1,0 +1,8 @@
+ 1. Merge Parth <-- Anush
+ 2. No need as they are at the smae level.
+ 3. I AM USING THE HISTORY OBJECT FROM THE REACT ROUTER DOM. TO PASS THE STATE BETWEEN ROUTES.
+ 4. one issue in the Array union, function of the upate Doc is that the 1's call is being used in decrement but not in the UNION. this leaves us with  2 possible solutions: 
+ > reading first and then pushing and then updatin.
+ > using the map data structure and keys instead of the Arrays.
+ 
+ the former one is way better but comes with a bit of an issue, with the last element being repaeted twice.
