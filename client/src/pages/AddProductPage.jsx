@@ -16,6 +16,7 @@ export default function AddProductPage() {
   const Navigate = useNavigate();
   //   const { user, token } = useUserContext();
   const { uid } = useUserContext();
+  const { userName } = useUserContext();
 
   async function handleAddProduct(event) {
     event.preventDefault();
@@ -41,7 +42,7 @@ export default function AddProductPage() {
       minQuantity: data.minQuantity,
       seller: uid,
       totalQuantity: data.totalQuantity,
-      sellerName: 
+      sellerName: userName,
     });
 
     console.log("Document id: ", docRef.id);

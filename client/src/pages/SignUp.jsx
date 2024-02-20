@@ -66,6 +66,7 @@ export default function SignUp() {
         uid: response.user.uid,
         accessToken: response.user.stsTokenManager.accessToken,
         refreshToken: response.user.stsTokenManager.refreshToken,
+        userName: userData.name,
       };
 
       // document.cookie();

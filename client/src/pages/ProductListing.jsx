@@ -109,6 +109,7 @@ export default function ProductListing() {
 
 function Product({ product }) {
   const { uid } = useUserContext();
+  const { userName } = useUserContext();
   const { dispatch } = useUserContext();
   const Navigate = useNavigate();
 
@@ -116,13 +117,13 @@ function Product({ product }) {
   const [price, setPrice] = useState(product.price);
 
   function handleAddQuantity() {
-    setPrice((prev) => (prev * (quantity + 1)) / quantity);
-    setQuantity((prev) => prev + 1);
+    setPrice((prev) => (+prev * (+quantity + 1)) / +quantity);
+    setQuantity((prev) => +prev + 1);
   }
   function handleSubtQuantity() {
     if (quantity > 1) {
-      setPrice((prev) => (prev * (quantity - 1)) / quantity);
-      setQuantity((prev) => prev - 1);
+      setPrice((prev) => (+prev * (+quantity - 1)) / +quantity);
+      setQuantity((prev) => +prev - 1);
     }
   }
   async function handleAddTocart() {
@@ -152,8 +153,9 @@ function Product({ product }) {
       querySnapshot.forEach((doc) => {
         const docRef = doc.ref;
         updateDoc(docRef, {
-          minQuantity: quantity,
+          totalQuantity: doc.data().totalQuantity - quantity,
         });
+        // console.log("from the query's for each");
       });
 
       await updateDoc(docRef, {
@@ -161,7 +163,8 @@ function Product({ product }) {
           p_name: product.title,
           quantity: quantity,
           price: price,
-          seller: product.seller,
+          seller: product.sellerName,
+          sellerID: product.seller,
         }),
       });
       Navigate("/order");
@@ -184,7 +187,9 @@ function Product({ product }) {
 
   return (
     <div className="productListingPage-product" key={product._id}>
-      <p className="productListingPage-product-sellerName">{product.seller}</p>
+      <p className="productListingPage-product-sellerName">
+        Sold By: {product.sellerName}
+      </p>
       <p className="productListingPage-product-title">{product.title}</p>
       <p className="productListingPage-product-description">
         {product.description}
@@ -199,6 +204,9 @@ function Product({ product }) {
         </p>
       </div>
       <p className="productListingPage-product-price">₹{price}</p>
+      <p className="productListingPage-product-sellerName">
+        Remaining Quantity: {product.totalQuantity}
+      </p>
       <p
         className="productListingPage-product-AddToCart"
         onClick={handleAddTocart}
