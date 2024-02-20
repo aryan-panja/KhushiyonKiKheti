@@ -27,7 +27,6 @@ import Profile from "./pages/Profile";
 import LandingPage from "./pages/LandingPage";
 import Cart2 from "./pages/Cart2";
 
-
 function App() {
   const { uid } = useUserContext();
   console.log("APP.JSX: ", uid);
@@ -37,14 +36,20 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={uid ? <LandingPage /> : <Navigate to="/user/login" />} />
+        <Route
+          path="/"
+          element={uid ? <LandingPage /> : <Navigate to="/user/login" />}
+        />
         {/* <Route
           path="/"
           element={
             uid ? <Navigate to="/Home" /> : <Navigate to="/user/login" />
           }
         /> */}
-        <Route path="/profile" element={uid ? <Profile /> : <Navigate to='/user/login' />} />
+        <Route
+          path="/profile"
+          element={uid ? <Profile /> : <Navigate to="/user/login" />}
+        />
         <Route
           path="/Home"
           element={uid ? <Profile /> : <Navigate to="/user/login" />}

@@ -1,29 +1,27 @@
 //Images
-import Icon from "../../../public/Images/Icon.png"
+import Icon from "../../../public/Images/Icon.png";
 
 // Components
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import useUserContext from '../../Hooks/useUserContext';
-
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import useUserContext from "../../Hooks/useUserContext";
 
 const Navbar = () => {
-
   const { user, dispatch } = useUserContext();
+  const { uid } = useUserContext();
 
   function handleLogout() {
-    dispatch({ type: 'LOGOUT' });
-    localStorage.removeItem('USER')
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("USER");
   }
 
   useEffect(() => {
-    console.log(user)
-  })
+    console.log(user);
+  });
 
   return (
     <nav className="navbar">
-
       <div className="navbar-title">
         <img src={Icon} />
         <div className="navbar-title-text">
@@ -45,19 +43,18 @@ const Navbar = () => {
             <Link to="/add-product">Add Product</Link>
           </>
         )}
-        {user ? (
-          <Link className="logoutButton" onClick={handleLogout}>Logout</Link>
-
+        {uid ? (
+          <Link className="logoutButton" onClick={handleLogout}>
+            Logout
+          </Link>
         ) : (
           <>
             <Link to="/user/login">Login</Link>
             <Link to="/user/signup">Sign Up</Link>
           </>
-
         )}
-
       </div>
-    </nav >
+    </nav>
   );
 };
 

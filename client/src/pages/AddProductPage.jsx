@@ -12,6 +12,7 @@ export default function AddProductPage() {
   const minquantityref = useRef();
   const testQuantityRef = useRef();
   const testPriceRef = useRef();
+  const totalQuantityRef = useRef();
   const Navigate = useNavigate();
   //   const { user, token } = useUserContext();
   const { uid } = useUserContext();
@@ -22,6 +23,7 @@ export default function AddProductPage() {
     const data = {
       title: titleRef.current.value,
       description: descRef.current.value,
+      totalQuantity: totalQuantityRef.current.value,
       //   sellerName: user.name,
       //   sellerId: user._id,
       minQuantity: minquantityref.current.value,
@@ -38,6 +40,8 @@ export default function AddProductPage() {
       testQuantityPrice: data.testQuantityPrice,
       minQuantity: data.minQuantity,
       seller: uid,
+      totalQuantity: data.totalQuantity,
+      sellerName: 
     });
 
     console.log("Document id: ", docRef.id);
@@ -73,6 +77,11 @@ export default function AddProductPage() {
       <div className="addProductPage-description">
         <p className="heading">Description</p>
         <input type="text" id="description" ref={descRef} />
+      </div>
+
+      <div className="addProductPage-description">
+        <p className="heading">Total Quantity you have</p>
+        <input type="text" id="description" ref={totalQuantityRef} />
       </div>
 
       <div className="addProductPage-minQuantity">
