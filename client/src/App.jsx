@@ -69,12 +69,12 @@ function App() {
           path="/chatbot"
           element={uid? <Llm /> : <Navigate to="/user/login" />}
         />
-        {/* <Route
+        <Route
           path="/predict-crop"
           element={
-            user?.isSeller ? <PredictCrops /> : <Navigate to="/user/login" />
+            <PredictCrops />
           }
-        /> */}
+        /> 
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/weather" element={<Weather />} />
       </Routes>
