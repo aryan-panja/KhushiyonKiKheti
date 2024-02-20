@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom"
 import "../Styles/LandingPage.css"
 
 export default function LandingPage() {
-
   const Navigate = useNavigate();
 
   return (
     <div className="landingPage-div">
       <div className="landingPage-routes-div">
         <div className="landingPage-routes-headings">
-          Hi there 👋, 
+          Hi there 👋,
           <p className="landingPage-headings-desc-1">
             I am Kishan your Farming Assitant
           </p>
@@ -27,15 +26,21 @@ export default function LandingPage() {
             Purchase From Essentials
           </div>
 
-          <div className="landingPage-sellCrops-route landingPage-route" onClick={() => Navigate('/')}>
+          <div
+            className="landingPage-sellCrops-route landingPage-route"
+            onClick={() => Navigate("/")}
+          >
             Sell Crops
           </div>
 
-          <div className="landingPage-whattosow-route landingPage-route" onClick={() => Navigate('/')}>
+          <div
+            className="landingPage-whattosow-route landingPage-route"
+            onClick={() => Navigate("/")}
+          >
             Help me decide what to sow ?
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -41,9 +41,10 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    console.log("On Profile page");
     setLoading(true);
     getData();
-  }, []);
+  }, [uid]);
 
   return loading ? (
     <div>Loading Animation</div>

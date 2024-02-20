@@ -15,8 +15,8 @@ const Navbar = () => {
   const navlinksRef = useRef();
 
   function handleLogout() {
-    dispatch({ type: 'LOGOUT' });
-    localStorage.removeItem('USER')
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("USER");
   }
 
   function handleMobileNav() {
@@ -35,7 +35,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-
       <div className="navbar-title">
         <img src={Icon} />
         <div className="navbar-title-text">
@@ -69,11 +68,9 @@ const Navbar = () => {
             <Link to="/user/login">Login</Link>
             <Link to="/user/signup">Sign Up</Link>
           </>
-
         )}
-
       </div>
-    </nav >
+    </nav>
   );
 };
 
