@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-import "../Styles/LandingPage.css"
+import "../Styles/LandingPage.css";
 
 export default function LandingPage() {
   const Navigate = useNavigate();
@@ -18,13 +18,17 @@ export default function LandingPage() {
           </p>
         </div>
         <div className="landingPage-routes">
-
-          <div className="landingPage-chatbot-route landingPage-route" onClick={()=>Navigate('/chatbot')}>
-
+          <div
+            className="landingPage-chatbot-route landingPage-route"
+            onClick={() => Navigate("/chatbot")}
+          >
             Kissan Mitra (Chat Bot)
           </div>
 
-          <div className="landingPage-purchase-route landingPage-route" onClick={() => Navigate('/')}>
+          <div
+            className="landingPage-purchase-route landingPage-route"
+            onClick={() => Navigate("/")}
+          >
             Purchase From Essentials
           </div>
 
