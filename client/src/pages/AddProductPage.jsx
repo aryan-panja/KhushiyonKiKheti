@@ -4,6 +4,7 @@ import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
 import { doc, addDoc, collection } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
+import "../Styles/AddProductPage.css"
 
 export default function AddProductPage() {
   const titleRef = useRef();
@@ -77,7 +78,7 @@ export default function AddProductPage() {
 
       <div className="addProductPage-description">
         <p className="heading">Description</p>
-        <input type="text" id="description" ref={descRef} />
+        <textarea id="description" ref={descRef} />
       </div>
 
       <div className="addProductPage-description">

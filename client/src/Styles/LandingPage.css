@@ -7,6 +7,10 @@
   margin-left: 10vw;
 }
 
+.landingPage-routes>a {
+  text-decoration: none;
+}
+
 .landingPage-routes-headings {
   color: #22577A;
   font-size: 50px;

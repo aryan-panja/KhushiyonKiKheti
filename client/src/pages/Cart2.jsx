@@ -17,6 +17,7 @@ const Cart2 = () => {
   useEffect(() => {
     setSubtotal(() => {
       var total = 0;
+      if (!cart?.length) return 0;
       cart.forEach(item => {
         if (item.price) total += JSON.parse(item.price)
       });
@@ -91,13 +92,17 @@ const Cart2 = () => {
     : (
       <div className="orderPage-div">
         <div className="orderPage-left-div">
-          {cart.map(item => <Product product={item} setCart={setCart} />)}
+          {cart?.length ? (
+            cart.map(item => <Product product={item} setCart={setCart} />)
+          ) : (
+            "Empty Cart"
+          )}
         </div>
 
         <div className="orderPage-right-div">
           <div className="orderPage-subtotal">
             <p>Subtotal  ₹ {subtotal} </p>
-            <p>For 10 products</p>
+            <p>For {cart?.length ? cart.length : "0"} products</p>
           </div>
 
           <div className="orderPage-btn">

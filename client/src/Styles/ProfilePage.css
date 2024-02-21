@@ -37,7 +37,12 @@
 .profilePage-btns {
   display: flex;
   flex-direction: column;
-  gap: 2vh;
+  gap: 2.5vh;
+}
+
+.profilePage-btns>div {
+  font-size: 20px;
+  width: 20vw;
 }
 
 .profilePage-changeToSeller {

@@ -20,7 +20,7 @@
   align-items: center;
 }
 
-.navbar-title>img {
+.navbar-title>a>img {
   height: 38px;
   margin-right: 1vw;
 }

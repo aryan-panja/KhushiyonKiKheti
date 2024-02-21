@@ -85,7 +85,7 @@ const Profile = () => {
           </div>
         )}
 
-        <div className="profilePage-logout-btn">
+        <div className="profilePage-logout-btn" onClick={logOut}>
           Log Out
         </div>
         <div className="profilePage-order-history">

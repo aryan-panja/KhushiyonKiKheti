@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import "../Styles/LandingPage.css"
 
@@ -18,27 +18,27 @@ export default function LandingPage() {
           </p>
         </div>
         <div className="landingPage-routes">
-          <div className="landingPage-chatbot-route landingPage-route" onClick={() => Navigate('/')}>
+          <Link to="/chatbot" className="landingPage-chatbot-route landingPage-route" onClick={() => Navigate('/')}>
             Kissan Mitra (Chat Bot)
-          </div>
+          </Link>
 
-          <div className="landingPage-purchase-route landingPage-route" onClick={() => Navigate('/')}>
+          <Link to="/cart" className="landingPage-purchase-route landingPage-route" onClick={() => Navigate('/')}>
             Purchase From Essentials
-          </div>
+          </Link>
 
-          <div
+          <Link to="/add-product"
             className="landingPage-sellCrops-route landingPage-route"
             onClick={() => Navigate("/")}
           >
             Sell Crops
-          </div>
+          </Link>
 
-          <div
+          <Link to="/"
             className="landingPage-whattosow-route landingPage-route"
             onClick={() => Navigate("/")}
           >
             Help me decide what to sow ?
-          </div>
+          </Link>
         </div>
       </div>
     </div>

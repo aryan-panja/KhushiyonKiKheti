@@ -72,7 +72,6 @@ const ViewProduct = () => {
         }),
       });
 
-      console.log(updatedDocument);
       console.log('Add this product to cart')
       Navigate("/order");
     }

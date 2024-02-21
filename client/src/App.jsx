@@ -71,10 +71,10 @@ function App() {
         ) : (
           <Route path="/user/profile" element={<Navigate to="/user/login" />} />
         )}
-        {/* <Route
+        <Route
           path="/chatbot"
-          element={user?.isSeller ? <Llm /> : <Navigate to="/user/login" />}
-        /> */}
+          element={uid ? <Llm /> : <Navigate to="/user/login" />}
+        />
         {/* <Route
           path="/predict-crop"
           element={

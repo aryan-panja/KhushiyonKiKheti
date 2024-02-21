@@ -11,7 +11,7 @@ import useUserContext from '../../Hooks/useUserContext';
 
 const Navbar = () => {
 
-  const { uid, dispatch } = useUserContext();
+  const { uid, dispatch} = useUserContext();
   const navlinksRef = useRef();
 
   function handleLogout() {
@@ -29,14 +29,15 @@ const Navbar = () => {
       setTimeout(() => navlinksRef.current.style.transform = 'translateY(0%)', 50)
     }
 
-
   }
 
 
   return (
     <nav className="navbar">
       <div className="navbar-title">
-        <img src={Icon} />
+        <Link to="/">
+          <img src={Icon} />
+        </Link>
         <div className="navbar-title-text">
           Khushiyon Ki Kheti
           <p className="navbar-title-desc">
@@ -50,13 +51,13 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-links" ref={navlinksRef}>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link> */}
         <Link to="/cart">Shopping Page</Link>
         <Link to="/chatbot">किसान मित्र</Link>
         <Link to="/order">Cart</Link>
         <Link to="/user/profile">Profile</Link>
 
-        {uid?.isSeller && (
+        {uid && (
           <>
             <Link to="/predict-crop">Predict Crop</Link>
             <Link to="/add-product">Add Product</Link>
@@ -64,7 +65,6 @@ const Navbar = () => {
         )}
         {uid ? (
           <Link className="logoutButton" onClick={handleLogout}>Logout</Link>
-
         ) : (
           <>
             <Link to="/user/login">Login</Link>
