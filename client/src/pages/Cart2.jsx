@@ -76,9 +76,7 @@ const Cart2 = () => {
     : (
       <div className="orderPage-div">
         <div className="orderPage-left-div">
-          <div className="orderPage-selectedProducts-div">
-            {cart.map(item => <Product product={item} />)}
-          </div>
+          {cart.map(item => <Product product={item} />)}
         </div>
 
         <div className="orderPage-right-div">
