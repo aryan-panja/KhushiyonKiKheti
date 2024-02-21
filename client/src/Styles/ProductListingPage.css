@@ -1,3 +1,7 @@
+.productListingPage-div {
+  margin-bottom: 12vh;
+}
+
 .productListingPage-container {
   display: flex;
   flex-wrap: wrap;

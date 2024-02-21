@@ -7,6 +7,7 @@ import { reload, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import "../Styles/ProfilePage.css"
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -46,65 +47,63 @@ const Profile = () => {
     getData();
   }, [uid]);
 
+  console.log(userData)
+
   return loading ? (
     <div>Loading Animation</div>
   ) : (
-    <div id="main">
-      <div id="profile">
-        <div id="left">
-          <div id="image_container">
-            <img src="" alt="" />
-          </div>
-          <h2 id="name">{userData.name}</h2>
-          <h4 id="adds">{userData.address}</h4>
-          <div className="menu">
-            <button className="menuBtn">Basic Info</button>
-            <button className="menuBtn">Order History</button>
-            <button className="menuBtn">Change to Seller</button>
-            <button className="menuBtn">Delete Profile</button>
-          </div>
-        </div>
-        <div id="right">
-          <div className="row">
-            <div className="key">Name: </div>
-            <div className="value">{userData.name}</div>
-            <div className="edit">
-              <button className="editBtn">EDIT</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="key">Address: </div>
-            <div className="value">{userData.address}</div>
-            <div className="edit">
-              <button className="editBtn">EDIT</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="key">Phone Number: </div>
-            <div className="value">{userData.phoneNumber}</div>
-            <div className="edit">
-              <button className="editBtn">EDIT</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="key">Email ID: </div>
-            <div className="value">{userData.email}</div>
-            <div className="edit">
-              <button className="editBtn">EDIT</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="key">Account Type: </div>
-            <div className="value">{userData.seller}</div>
-            <div className="edit">
-              <button className="editBtn">EDIT</button>
-            </div>
-          </div>
-          <button onClick={logOut}>LOGOUT</button>
+    <div className="profilePage-div">
+      <div className="profilePage-personalInfo">
+        <p className="profilePage-userName">
+          {userData.name}
+        </p>
+        <p className="profilePage-Address">
+          {userData.address}
+        </p>
+
+        <div className="profilePage-User-Info">
+          <p className="profilePage-phone-no">
+            Phone Number : {userData.phoneNumber}
+          </p>
+          <p className="profilePage-email">
+            Email : {userData.email}
+          </p>
+          <p className="profilePage-account-type">
+            Account Type : {userData.isSeller ? "Seller" : "Buyer"}
+          </p>
+
         </div>
       </div>
+
+
+
+      <div className="profilePage-btns">
+
+        {!userData.isSeller && (
+          <div className="profilePage-changeToSeller">
+            Change To Seller
+          </div>
+        )}
+
+        <div className="profilePage-logout-btn" onClick={logOut}>
+          Log Out
+        </div>
+        <div className="profilePage-order-history">
+          View Order History
+        </div>
+
+        <div className="profilePage-view-sales">
+          View Sales
+        </div>
+        <div className="profilePage-delete-account">
+          Delete Account
+        </div>
+      </div>
+
+
     </div>
   );
 };
 
 export default Profile;
+``

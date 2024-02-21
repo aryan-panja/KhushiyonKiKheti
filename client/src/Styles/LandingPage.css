@@ -13,6 +13,10 @@
   height: 74vh;
 }
 
+.landingPage-routes>a {
+  text-decoration: none;
+}
+
 .landingPage-routes-headings {
   font-family: "Capriola", sans-serif;
   color: #22577a;

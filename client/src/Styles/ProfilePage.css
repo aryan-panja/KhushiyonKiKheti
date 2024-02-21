@@ -1,0 +1,166 @@
+.profilePage-div {
+  margin-bottom: 12vh;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  padding: 12vh 6vw;
+  gap: 6vw;
+}
+
+.profilePage-personalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.profilePage-userName {
+  color: #58C571;
+  font-size: 60px;
+}
+
+.profilePage-Address {
+  color: #22577A;
+  font-size: 30px;
+}
+
+.profilePage-User-Info {
+  margin-top: 2vh;
+}
+
+.profilePage-User-Info>p {
+  color: #22577A;
+  font-size: 30px;
+  margin-bottom: 2vh;
+}
+
+.profilePage-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vh;
+}
+
+.profilePage-btns>div {
+  font-size: 20px;
+  width: 20vw;
+}
+
+.profilePage-changeToSeller {
+  cursor: pointer;
+  border: 0.5px solid #80ED99;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.profilePage-changeToSeller:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+.profilePage-logout-btn {
+  cursor: pointer;
+  border: 0.5px solid #22577A;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #22577A;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.profilePage-logout-btn:hover {
+  background-color: #22577A;
+  color: white;
+}
+
+.profilePage-order-history {
+  cursor: pointer;
+  border: 0.5px solid #80ED99;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.profilePage-order-history:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+.profilePage-view-sales {
+  cursor: pointer;
+  border: 0.5px solid #80ED99;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.profilePage-view-sales:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+.profilePage-delete-account {
+  width: 14vw;
+  cursor: pointer;
+  border: 0.5px solid rgb(196, 3, 3);
+  text-align: center;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: rgb(196, 3, 3);
+  transition: all 0.2s ease-out;
+}
+
+.profilePage-delete-account:hover {
+  background-color: rgb(196, 3, 3);
+  color: white;
+}
+
+
+@media(max-width : 500px) {
+  .profilePage-div {
+    flex-direction: column;
+    padding: 8vh 5vw;
+  }
+
+  .profilePage-personalInfo {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profilePage-Address {
+    font-size: 22px;
+  }
+
+  .profilePage-User-Info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profilePage-User-Info>p {
+    font-size: 20px;
+  }
+
+  .profilePage-btns>div {
+    width: 80vw;
+    font-size: 20px;
+  }
+}

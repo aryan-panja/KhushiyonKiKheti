@@ -1,0 +1,73 @@
+/* Add Product Page */
+
+.addProductPage-div {
+  padding: 5vh 30vw;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12vh;
+}
+
+.addProductPage-heading {
+  font-size: 20px;
+  margin-bottom: 2vh;
+}
+
+.addProductPage-div>div {
+  padding: 4vh 0;
+  border-top: 0.5px solid rgb(227, 227, 227);
+  border-bottom: 0.5px solid rgb(227, 227, 227);
+}
+
+.addProductPage-div>div>input,
+.addProductPage-div>div>textarea {
+  height: 6vh;
+  box-sizing: border-box;
+  padding: 0.5vh 2vw;
+  font-size: 20px;
+  width: 100%;
+  border-radius: 10px;
+  border: 0.5px solid rgb(227, 227, 227);
+  background-color: rgb(245, 245, 245);
+  margin-top: 1vh;
+}
+
+.addProductPage-div>div>input:focus {
+  background-color: white;
+  outline: none;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+#description {
+  height: 6vh;
+}
+
+.addProductPage-div>button {
+  cursor: pointer;
+  border: 0.5px solid #80ED99;
+  background-color: white;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+  font-size: 20px;
+}
+
+.addProductPage-div>button:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+
+@media(max-width : 500px) {
+
+  .addProductPage-div {
+    padding: 5vh 10vw;
+  }
+}
