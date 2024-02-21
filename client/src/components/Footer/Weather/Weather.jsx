@@ -20,9 +20,14 @@ const Weather = () => {
 
       try {
         // Construct the API request URL
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.city},${location.state},${location.country}&appid=${weatherApiKey}`;
-        console.log(apiUrl);
 
+        // const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.city},${location.state},${location.country}&appid=${weatherApiKey}`;
+        // console.log(apiUrl);
+
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${weatherApiKey}`;
+
+        console.log("lat and long:", location.latitude, location.longitude);
+        
         // Fetch weather information
         const weatherResponse = await fetch(apiUrl);
 

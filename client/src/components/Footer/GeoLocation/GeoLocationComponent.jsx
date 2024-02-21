@@ -21,7 +21,7 @@ const LocationComponent = () => {
               const country = data.address.country;
 
               setLocation({ city, state, country });
-              dispatch({type : "setLocation" , payload : { city, state, country }})
+              dispatch({type : "setLocation" , payload : { city, state, country, latitude, longitude }})
               
             })
             .catch((error) => {
