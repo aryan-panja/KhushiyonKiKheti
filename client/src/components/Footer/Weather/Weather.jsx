@@ -12,7 +12,7 @@ const Weather = () => {
 
   // const apiKey = process.env.REACT_APP_WEATHER_API;
 
-  console.log(weatherApiKey)
+  // console.log(weatherApiKey)
 
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Weather = () => {
         return; 
       }
 
-      const weatherApiKey = 'c533fccf081b9e26f4d7813cbb1b0f66'; // Replace with your OpenWeatherMap API key
+      // const weatherApiKey = 'c533fccf081b9e26f4d7813cbb1b0f66'; // Replace with your OpenWeatherMap API key
 
       try {
         // Construct the API request URL
