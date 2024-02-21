@@ -41,19 +41,9 @@ function App() {
           path="/"
           element={uid ? <LandingPage /> : <Navigate to="/user/login" />}
         />
-        {/* <Route
-          path="/"
-          element={
-            uid ? <Navigate to="/Home" /> : <Navigate to="/user/login" />
-          }
-        /> */}
         <Route
           path="/viewProduct"
           element={uid ? <ViewProduct /> : <Navigate to="/user/login" />}
-        />
-        <Route
-          path="/profile"
-          element={uid ? <Profile /> : <Navigate to="/user/login" />}
         />
         <Route
           path="/Home"
@@ -75,6 +65,12 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<ProductListing />} />
         <Route path="/order" element={<Cart2 />} />
+
+        {uid ? (
+          <Route path="/user/profile" element={<Profile />} />
+        ) : (
+          <Route path="/user/profile" element={<Navigate to="/user/login" />} />
+        )}
         {/* <Route
           path="/chatbot"
           element={user?.isSeller ? <Llm /> : <Navigate to="/user/login" />}

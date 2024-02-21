@@ -2,7 +2,6 @@ import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { dataBase } from "../firebaseConfig";
 import useUserContext from "../Hooks/useUserContext";
-import CartItemDisplayer from "./CartItemDisplayer";
 import "../Styles/OrderPage.css"
 import Sample from "../../public/Images/Sample Wheat Image.png"
 
@@ -10,6 +9,21 @@ const Cart2 = () => {
   const { uid } = useUserContext();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [subtotal, setSubtotal] = useState(0)
+
+  console.log(subtotal)
+
+  useEffect(() => {
+    setSubtotal(() => {
+      var total = 0;
+      cart.forEach(item => {
+        if (item.price) total += JSON.parse(item.price)
+      });
+      return total;
+    })
+  }, [cart])
+
   let array = [];
 
   // const getCartItems = async () => {
@@ -69,6 +83,7 @@ const Cart2 = () => {
     }
   }, [uid]);
 
+
   console.log(cart)
 
   return loading
@@ -76,12 +91,12 @@ const Cart2 = () => {
     : (
       <div className="orderPage-div">
         <div className="orderPage-left-div">
-          {cart.map(item => <Product product={item} />)}
+          {cart.map(item => <Product product={item} setCart={setCart} />)}
         </div>
 
         <div className="orderPage-right-div">
           <div className="orderPage-subtotal">
-            <p>Subtotal  ₹1000</p>
+            <p>Subtotal  ₹ {subtotal} </p>
             <p>For 10 products</p>
           </div>
 
@@ -100,16 +115,23 @@ const Cart2 = () => {
 };
 
 
-function Product({ product }) {
+function Product({ product, setCart }) {
 
-  console.log(product);
+  console.log(product)
 
   const [quantity, setQuantity] = useState(product.quantity);
   const [price, setPrice] = useState(product.price);
 
   function handleAddQuantity() {
-    setPrice((prev) => (+prev * (+quantity + 1)) / +quantity);
-    setQuantity((prev) => +prev + 1);
+    const newPrice = (+price * (+quantity + 1)) / +quantity;
+    const newQuantity = +quantity + 1;
+    setPrice(newPrice);
+    setQuantity(newQuantity);
+
+    setCart((prev) => prev.map(prod => {
+      if (prod.p_name !== product.p_name) return prod;
+      return { ...prod, quantity: newQuantity, price: newPrice }
+    }));
   }
   function handleSubtQuantity() {
     if (quantity > 1) {

@@ -51,8 +51,10 @@ const Navbar = () => {
 
       <div className="navbar-links" ref={navlinksRef}>
         <Link to="/">Home</Link>
-        <Link to="/cart">Shopping Cart</Link>
+        <Link to="/cart">Shopping Page</Link>
         <Link to="/chatbot">किसान मित्र</Link>
+        <Link to="/order">Cart</Link>
+        <Link to="/user/profile">Profile</Link>
 
         {uid?.isSeller && (
           <>

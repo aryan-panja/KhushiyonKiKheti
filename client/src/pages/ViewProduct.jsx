@@ -45,7 +45,7 @@ const ViewProduct = () => {
       setQuantity((prev) => +prev - 1);
     }
   }
-  
+
   async function handleAddTocart() {
     if (uid == null) Navigate("/");
     else {
@@ -99,7 +99,7 @@ const ViewProduct = () => {
     <div className="viewProductPage-div">
       <div className="viewProductPage-left-div">
         <div className="viewProduct-Image">
-          {!product?.productImage ? (
+          {product?.productImage ? (
             <img src={product.productImage} />
           ) : (
             <img src={SampleWheatImage} />
