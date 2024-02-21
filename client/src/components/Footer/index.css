@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Capriola&family=Roboto&display=swap");
 
 * {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 
-
 .footer-location {
-  background-color: #E5FFE7;
+  background-color: #e5ffe7;
   color: black;
   padding: 2vh 2vw;
   position: fixed;
@@ -16,19 +16,27 @@
   justify-content: space-between;
 }
 
-
 .footer-title {
+  font-family: "Capriola", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.footer-title>img {
+.footerTitle {
+  font-family: "Capriola", sans-serif;
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+.footer-title > img {
   height: 38px;
+
   margin-right: 1vw;
 }
 
-.footer-title>p {
+.footer-title > p {
   color: black;
   font-size: 25px;
   font-family: "Roboto";
@@ -36,7 +44,7 @@
   font-style: italic;
 }
 
-.footer-title>p>p {
+.footer-title > p > p {
   font-size: 10px;
 }
 
@@ -47,8 +55,7 @@
   padding-right: 5vw;
 }
 
-
-@media(max-width : 500px) {
+@media (max-width: 500px) {
   .footer-location {
     padding: 2vh 4vw;
   }
@@ -57,11 +64,12 @@
     display: none;
   }
 
-  .footer-title>img {
+  .footer-title > img {
     height: 45px;
   }
 
-  .footer-title>p>p {
-    font-size: 15px;
+  .footer-title > p > p {
+    font-size: 11px;
+    font-family: "Capriola", sans-serif;
   }
 }
