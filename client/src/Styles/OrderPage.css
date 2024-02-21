@@ -1,0 +1,132 @@
+.orderPage-div {
+  margin: 5vh 8vw;
+  display: flex;
+  gap: 4vw;
+}
+
+
+.orderPage-left-div {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orderPage-product-div {
+  width: 60vw;
+  display: flex;
+  align-items: center;
+  padding: 2vh 0;
+  border-bottom: 0.5px solid rgb(210, 210, 210);
+  gap: 4vw;
+}
+
+.orderPage-product-image>img {
+  height: 15vh;
+  width: 8vw;
+  object-fit: contain;
+}
+
+.orderPage-product-title {
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: black;
+}
+
+
+.orderPage-quantity-btn {
+  border: 0.5px solid rgb(229, 227, 227);
+  display: flex;
+  justify-content: space-around;
+  padding: 1vh 1vw;
+  font-size: 20px;
+}
+
+.orderPage-plus,
+.orderPage-minus {
+  text-align: center;
+  cursor: pointer;
+  width: 4vw;
+
+}
+
+.orderPage-product-remove-btn {
+  width: 14vw;
+  cursor: pointer;
+  border: 0.5px solid rgb(196, 3, 3);
+  text-align: center;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: rgb(196, 3, 3);
+  transition: all 0.2s ease-out;
+}
+
+.orderPage-product-remove-btn:hover {
+  background-color: rgb(196, 3, 3);
+  color: white;
+}
+
+.orderPage-product-price {
+  display: flex;
+  width: 8vw;
+  font-size: 20px;
+}
+
+.orderPage-right-div {
+  /* background-color: rgb(176, 176, 176); */
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  padding: 4vh 0;
+}
+
+.orderPage-subtotal {
+  font-size: 30px;
+}
+
+.orderPage-btn {
+  display: flex;
+  gap: 2vh;
+  flex-direction: column;
+}
+
+.orderPage-checkout-btn {
+  cursor: pointer;
+  border: 0.5px solid #80ED99;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #80ED99;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.orderPage-checkout-btn:hover {
+  background-color: #80ED99;
+  color: white;
+}
+
+.orderPage-shopping-btn {
+  cursor: pointer;
+  border: 0.5px solid #22577A;
+  padding: 1vh 0;
+  border-radius: 4px;
+  color: #22577A;
+  width: 14vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.orderPage-shopping-btn:hover {
+  background-color: #22577A;
+  color: white;
+}
