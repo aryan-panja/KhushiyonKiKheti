@@ -10,8 +10,6 @@ const Weather = () => {
   const [temperature, setTemperature] = useState(null);
   const { dispatch } = useUserContext();
 
-  // const apiKey = process.env.REACT_APP_WEATHER_API;
-
   // console.log(weatherApiKey)
 
 
@@ -21,8 +19,6 @@ const Weather = () => {
         console.error('Invalid or undefined location data.');
         return; 
       }
-
-      // const weatherApiKey = 'c533fccf081b9e26f4d7813cbb1b0f66'; // Replace with your OpenWeatherMap API key
 
       try {
         // Construct the API request URL
