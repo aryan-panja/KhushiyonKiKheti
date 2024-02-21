@@ -22,6 +22,10 @@ import {
 } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
+import SampleWheatImage from "../../public/Images/Sample Wheat Image.png";
+import InfoImage from "../../public/Images/info.png"
+
+import "../Styles/ViewProductPage.css"
 
 const ViewProduct = () => {
   const Navigate = useNavigate();
@@ -41,6 +45,7 @@ const ViewProduct = () => {
       setQuantity((prev) => +prev - 1);
     }
   }
+  
   async function handleAddTocart() {
     if (uid == null) Navigate("/");
     else {
@@ -56,24 +61,8 @@ const ViewProduct = () => {
         updateDoc(docRef, {
           totalQuantity: doc.data().totalQuantity - quantity,
         });
-        // console.log("from the query's for each");
       });
-
-      //   const docSnap = await getDoc(docRef);
-      //   if (docSnap.exists()) {
-      //     const data = docSnap.data();
-      //     console.log("From DocSnap: ", data);
-      //     const items = data.Items;
-      //     items.push({
-      //       p_name: product.title,
-      //       quantity: quantity,
-      //       price: price,
-      //       seller: product.sellerName,
-      //       sellerID: product.seller,
-      //     });
-      // }
-      //   consol   e.log(items);
-      await updateDoc(docRef, {
+      const updatedDocument = await updateDoc(docRef, {
         Items: arrayUnion({
           p_name: product.title,
           quantity: quantity,
@@ -82,6 +71,9 @@ const ViewProduct = () => {
           sellerID: product.seller,
         }),
       });
+
+      console.log(updatedDocument);
+      console.log('Add this product to cart')
       Navigate("/order");
     }
     //   Navigate("/order");
@@ -101,46 +93,65 @@ const ViewProduct = () => {
     Navigate("/cart");
   }
 
-  return (
-    <div className="productListingPage-product" key={product._id}>
-      <div className="product-right-container">
-        <p className="productListingPage-product-title">{product.title}</p>
-        <p className="productListingPage-product-description">
-          {product.description}
-        </p>
+  console.log(product)
 
-        <div className="productListingPage-product-quantity">
-          <p className="minus-btn" onClick={handleSubtQuantity}>
-            -
-          </p>
-          {quantity} Kg
-          <p className="add-btn" onClick={handleAddQuantity}>
-            +
-          </p>
+  return (
+    <div className="viewProductPage-div">
+      <div className="viewProductPage-left-div">
+        <div className="viewProduct-Image">
+          {!product?.productImage ? (
+            <img src={product.productImage} />
+          ) : (
+            <img src={SampleWheatImage} />
+          )}
+        </div>
+      </div>
+
+      <div className="viewProductPage-right-div">
+        <div className="viewProduct-title">
+          {product.title}
         </div>
 
-        <p className="productListingPage-product-price">₹{price}</p>
-        <p className="productListingPage-product-sellerName">
-          Sold By: {product.sellerName}
-        </p>
-        <p className="productListingPage-product-sellerName">
-          Remaining Quantity: {product.totalQuantity}
-        </p>
-        <p
-          className="productListingPage-product-viewProduct"
-          onClick={handleAddTocart}
-        >
-          Add to Cart
-        </p>
-        <p
-          className="productListingPage-product-testQuantity"
-          onClick={handleTestQuantity}
-        >
-          Test {product.testQuantity} KG for ₹ {product.testQuantityPrice}
-        </p>
+        <div className="viewProduct-price">
+          Price : ₹ {price}
+        </div>
+
+        <div className="viewProduct-quantity-div">
+          <p>Choose Your Desired Quantity : </p>
+          <div className="viewProduct-quantity-btn">
+            <div className="viewProduct-minus" onClick={handleSubtQuantity}>
+              -
+            </div>
+            <div className="viewProduct-quantity">
+              {quantity}
+            </div>
+            <div className="viewProduct-plus" onClick={handleAddQuantity}>
+              +
+            </div>
+          </div>
+        </div>
+
+        <div className="viewProduct-cart-btn">
+          <div className="viewProduct-addToCart-btn" onClick={handleAddTocart}>
+            Add To Cart
+          </div>
+
+          <div className="viewProduct-addTestToCart-btn" onClick={handleTestQuantity}>
+            Test {product.testQuantity} Kg for ₹{product.testQuantityPrice}
+          </div>
+        </div>
+
+        <div className="viewProduct-TestQuantity-guide">
+          <img src={InfoImage} />
+          If You Want to Test the product first , You can order it's Test Quantity
+        </div>
+
+        <div className="viewProduct-description">
+          {product.description}
+        </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default ViewProduct;
