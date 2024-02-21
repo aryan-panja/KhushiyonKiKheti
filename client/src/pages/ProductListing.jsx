@@ -133,6 +133,7 @@ export function Product({ product }) {
     Navigate("/viewProduct", { state: { product } });
   }
   async function handleAddTocart() {
+    console.log('add to cart function is called')
     // dispatch({ type: "addToCart", payload: { ...product, quantity } });
     // Navigate("/cart");
     if (uid == null) Navigate("/");
