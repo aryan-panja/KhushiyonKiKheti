@@ -1,122 +1,124 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Capriola&family=Roboto&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Capriola&family=Roboto&display=swap");
 
-* {
-  font-family: "Capriola", sans-serif;
-}
+  * {
+    font-family: "Capriola", sans-serif;
+  }
 
-.navbar {
-  display: flex;
-  height: 10vh;
-  padding: 0 2vw;
-  justify-content: space-between;
-  background-color: #22577a;
-  align-items: center;
-  /* gap: 10vw; */
-}
-
-.navbar-title {
-  color: white;
-  display: flex;
-  align-items: center;
-  font-family: "Capriola", sans-serif;
-  font-size: 20px;
-}
-
-.navbar-title>a>img {
-  height: 38px;
-  margin-right: 1vw;
-}
-
-.navbar-title > div {
-  margin: 1px;
-  color: white;
-  font-size: 25px;
-  font-family: "Roboto";
-  font-weight: 500;
-  font-style: italic;
-  font-family: "Capriola", sans-serif;
-  font-size: 20px;
-}
-
-.navbar-title > div > p {
-  color: white;
-  font-weight: 400;
-  font-size: 10px;
-  margin-left: 10px;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 4vw;
-  transition: all 0.6s ease-out;
-}
-
-.navbar-links > a {
-  font-size: 20px;
-  color: white;
-  text-decoration: none;
-}
-
-.navbar-mobile-container {
-  display: none;
-}
-
-.navbar-title-desc {
-  font-family: "Capriola", sans-serif;
-  /* font-weight: 100; */
-}
-
-@media (max-width: 500px) {
   .navbar {
-    height: 8vh;
-    padding: 0 4vw;
-    position: relative;
-    z-index: 1;
-    gap: 0px;
+    display: flex;
+    height: 10vh;
+    padding: 0 2vw;
+    justify-content: space-between;
+    background-color: #22577a;
+    align-items: center;
+    /* gap: 10vw; */
+  }
+
+  .navbar-title {
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: "Capriola", sans-serif;
+    font-size: 20px;
+  }
+
+  .navbar-title>a>img {
+    height: 38px;
+    margin-right: 1vw;
+  }
+
+  .navbar-title>a {
+    text-decoration: none;
+    margin: 1px;
+    color: white;
+    font-size: 25px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-style: italic;
+    font-family: "Capriola", sans-serif;
+    font-size: 20px;
+  }
+
+  .navbar-title>a>p {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 10px;
+    margin-left: 10px;
   }
 
   .navbar-links {
-    display: none;
-    transform: translateY(-100%);
-    color: #22577a;
-    top: 8vh;
-    left: 0;
-    right: 0;
-    background-color: #80ed99;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 2vh 0;
-    z-index: 2;
-    position: absolute;
-    flex-direction: column;
+    display: flex;
+    gap: 4vw;
+    transition: all 0.6s ease-out;
   }
 
-  /* .navbar-title {
-    z-index: 2;
-  } */
-
-  .navbar-links > a {
-    color: black;
-    font-size: 25px;
-  }
-
-  .navbar-title > img {
-    height: 45px;
-  }
-
-  .navbar-title > div > p {
-    /* font-size: 10px; */
-    /* font-weight: 100; */
-    /* font-family: "Capriola", sans-serif; */
+  .navbar-links>a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
   }
 
   .navbar-mobile-container {
-    display: block;
+    display: none;
   }
 
-  .navbar-mobile-container > img {
-    height: 5vh;
+  .navbar-title-desc {
+    font-family: "Capriola", sans-serif;
+    /* font-weight: 100; */
   }
-}
+
+  @media (max-width: 500px) {
+    .navbar {
+      height: 8vh;
+      padding: 0 4vw;
+      position: relative;
+      z-index: 1;
+      gap: 0px;
+    }
+
+    .navbar-links {
+      display: none;
+      transform: translateY(-100%);
+      color: #22577a;
+      top: 8vh;
+      left: 0;
+      right: 0;
+      background-color: #80ed99;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 2vh 0;
+      z-index: 2;
+      position: absolute;
+      flex-direction: column;
+    }
+
+    /* .navbar-title {
+    z-index: 2;
+  } */
+
+    .navbar-links>a {
+      color: black;
+      font-size: 25px;
+    }
+
+    .navbar-title>img {
+      height: 45px;
+    }
+
+    .navbar-title>div>p {
+      /* font-size: 10px; */
+      /* font-weight: 100; */
+      /* font-family: "Capriola", sans-serif; */
+    }
+
+    .navbar-mobile-container {
+      display: block;
+    }
+
+    .navbar-mobile-container>img {
+      height: 5vh;
+    }
+  }

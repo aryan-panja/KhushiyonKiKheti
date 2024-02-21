@@ -34,7 +34,7 @@ export default function LandingPage() {
             Sell Crops
           </Link>
 
-          <Link to="/"
+          <Link to="/predict-crop"
             className="landingPage-whattosow-route landingPage-route"
             onClick={() => Navigate("/")}
           >

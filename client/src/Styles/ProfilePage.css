@@ -145,6 +145,10 @@
     justify-content: center;
   }
 
+  .profilePage-userName {
+    font-size: 50px;
+  }
+
   .profilePage-Address {
     font-size: 22px;
   }
