@@ -1,11 +1,18 @@
 // Weather.js
 import React, { useContext, useEffect, useState } from 'react';
 import useUserContext from '../../../Hooks/useUserContext';
+// import dotenv from 'dotenv';
+// dotenv.config();
+const weatherApiKey = import.meta.env.VITE_WEATHER_API
 
 const Weather = () => {
   const { location } = useUserContext();
   const [temperature, setTemperature] = useState(null);
   const { dispatch } = useUserContext();
+
+  // const apiKey = process.env.REACT_APP_WEATHER_API;
+
+  console.log(weatherApiKey)
 
 
   useEffect(() => {
