@@ -38,12 +38,12 @@ const Navbar = () => {
         <Link to="/">
           <img src={Icon} />
         </Link>
-        <div className="navbar-title-text">
+        <Link to="/" className="navbar-title-text">
           Khushiyon Ki Kheti
           <p className="navbar-title-desc">
             An Initiative to help farmers grow
           </p>
-        </div>
+        </Link>
       </div>
 
       <div className="navbar-mobile-container" onClick={handleMobileNav}>
