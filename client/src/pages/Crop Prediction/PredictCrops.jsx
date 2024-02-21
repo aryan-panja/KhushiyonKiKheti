@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css'; // Import your CSS file
 import useUserContext from '../../Hooks/useUserContext';
 import { Link } from 'react-router-dom';
@@ -7,19 +7,22 @@ import { Link } from 'react-router-dom';
 const PredictCrops = () => {
 
     // const history = useHistory();
-
-
     const { dispatch, weatherData } = useUserContext();
+    // console.log("Weather: ", weatherData.main.temp);
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        if(weatherData){
+        setFormData({
         N: '',
         P: '',
         K: '',
-        temperature: weatherData.main.temp - 273.15,
+        temperature: (weatherData.main.temp - 273.15).toFixed(2),
         humidity: weatherData.main.humidity,
         pH: '',
-        rainfall: '',
-    });
+        rainfall: '',})}
+    }, [weatherData]);
 
     const convertFormDataToArray = () => {
         return [
@@ -37,7 +40,7 @@ const PredictCrops = () => {
 
     const handlePredict = async () => {
         // Replace with your Flask server URL
-        const serverUrl = 'http://localhost:5001';
+        const serverUrl = 'http://20.193.153.81/';
 
         // Get ML prediction
         try {
@@ -219,7 +222,7 @@ const PredictCrops = () => {
                 {
                     mlPrediction && (
                         <><p>To know more about this Crop click the button given below and then press Submit Button there.</p>
-                        <p>
+                        <p style={{paddingBottom: '50px'}}>
                             <button><Link to="/chatbot"> Go to Chatbot</Link></button>
                         </p>
                         </>

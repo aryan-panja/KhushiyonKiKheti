@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Url from "../../../url";
 import useUserContext from "../Hooks/useUserContext";
 import { doc, addDoc, collection } from "firebase/firestore";
 import { dataBase } from "../firebaseConfig";
 import "../Styles/AddProductPage.css"
+import { uploadImage } from "../API/imageUpload";
 
 export default function AddProductPage() {
   const titleRef = useRef();
@@ -18,6 +19,12 @@ export default function AddProductPage() {
   //   const { user, token } = useUserContext();
   const { uid } = useUserContext();
   const { userName } = useUserContext();
+  const [productImage, setProductImage] = useState({});
+  const [imageURL, setImageURL] = useState("");
+
+  function getImage(event) {
+    uploadImage(event.target.files[0], setImageURL);
+  }
 
   async function handleAddProduct(event) {
     event.preventDefault();
@@ -32,7 +39,10 @@ export default function AddProductPage() {
       price: priceRef.current.value,
       testQuantity: testQuantityRef.current.value,
       testQuantityPrice: testPriceRef.current.value,
+      productImage: imageURL,
     };
+
+    console.log("From the AddProductPage.jsx", data.productImage);
 
     const docRef = await addDoc(collection(dataBase, "Products"), {
       title: data.title,
@@ -44,27 +54,10 @@ export default function AddProductPage() {
       seller: uid,
       totalQuantity: data.totalQuantity,
       sellerName: userName,
+      productImage: data.productImage,
     });
 
     console.log("Document id: ", docRef.id);
-
-    // const response = await fetch(Url.serverUrl + "/product/addProduct", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-
-    // const json = await response.json();
-
-    // if (response.ok) {
-    //   console.log(json);
-    //   // Navigate('/');
-    // } else {
-    //   console.log(json);
-    // }
   }
 
   return (
@@ -104,6 +97,12 @@ export default function AddProductPage() {
       <div className="addProductPage-price">
         <p className="heading">Price for Test Quantity</p>
         <input type="Number" id="price" ref={testPriceRef} />
+      </div>
+
+      <div className="addProductPage-price">
+        <p className="heading">Sample Photo of the Product</p>
+        {/* <input type="Number" id="price" ref={testPriceRef} /> */}
+        <input type={"file"} onChange={getImage} />
       </div>
 
       <button onClick={handleAddProduct}>Add Product</button>

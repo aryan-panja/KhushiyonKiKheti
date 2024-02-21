@@ -46,6 +46,11 @@ function App() {
           element={uid ? <ViewProduct /> : <Navigate to="/user/login" />}
         />
         <Route
+          path="/profile"
+          element={<Profile />}
+          // element={uid ? <Profile /> : <Navigate to="/user/login" />}
+        />
+        <Route
           path="/Home"
           element={uid ? <Profile /> : <Navigate to="/user/login" />}
         />
@@ -65,7 +70,6 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<ProductListing />} />
         <Route path="/order" element={<Cart2 />} />
-
         {uid ? (
           <Route path="/user/profile" element={<Profile />} />
         ) : (
@@ -75,12 +79,7 @@ function App() {
           path="/chatbot"
           element={uid ? <Llm /> : <Navigate to="/user/login" />}
         />
-        {/* <Route
-          path="/predict-crop"
-          element={
-            user?.isSeller ? <PredictCrops /> : <Navigate to="/user/login" />
-          }
-        /> */}
+        <Route path="/predict-crop" element={<PredictCrops />} />
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/weather" element={<Weather />} />
       </Routes>
