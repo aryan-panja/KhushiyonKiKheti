@@ -23,9 +23,9 @@ import {
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
 import SampleWheatImage from "../../public/Images/Sample Wheat Image.png";
-import InfoImage from "../../public/Images/info.png"
+import InfoImage from "../../public/Images/info.png";
 
-import "../Styles/ViewProductPage.css"
+import "../Styles/ViewProductPage.css";
 
 const ViewProduct = () => {
   const Navigate = useNavigate();
@@ -45,7 +45,7 @@ const ViewProduct = () => {
       setQuantity((prev) => +prev - 1);
     }
   }
-  
+
   async function handleAddTocart() {
     if (uid == null) Navigate("/");
     else {
@@ -73,7 +73,7 @@ const ViewProduct = () => {
       });
 
       console.log(updatedDocument);
-      console.log('Add this product to cart')
+      console.log("Add this product to cart");
       Navigate("/order");
     }
     //   Navigate("/order");
@@ -93,13 +93,13 @@ const ViewProduct = () => {
     Navigate("/cart");
   }
 
-  console.log(product)
+  console.log(product);
 
   return (
     <div className="viewProductPage-div">
       <div className="viewProductPage-left-div">
         <div className="viewProduct-Image">
-          {!product?.productImage ? (
+          {product?.productImage ? (
             <img src={product.productImage} />
           ) : (
             <img src={SampleWheatImage} />
@@ -108,13 +108,9 @@ const ViewProduct = () => {
       </div>
 
       <div className="viewProductPage-right-div">
-        <div className="viewProduct-title">
-          {product.title}
-        </div>
+        <div className="viewProduct-title">{product.title}</div>
 
-        <div className="viewProduct-price">
-          Price : ₹ {price}
-        </div>
+        <div className="viewProduct-price">Price : ₹ {price}</div>
 
         <div className="viewProduct-quantity-div">
           <p>Choose Your Desired Quantity : </p>
@@ -122,9 +118,7 @@ const ViewProduct = () => {
             <div className="viewProduct-minus" onClick={handleSubtQuantity}>
               -
             </div>
-            <div className="viewProduct-quantity">
-              {quantity}
-            </div>
+            <div className="viewProduct-quantity">{quantity}</div>
             <div className="viewProduct-plus" onClick={handleAddQuantity}>
               +
             </div>
@@ -136,22 +130,24 @@ const ViewProduct = () => {
             Add To Cart
           </div>
 
-          <div className="viewProduct-addTestToCart-btn" onClick={handleTestQuantity}>
+          <div
+            className="viewProduct-addTestToCart-btn"
+            onClick={handleTestQuantity}
+          >
             Test {product.testQuantity} Kg for ₹{product.testQuantityPrice}
           </div>
         </div>
 
         <div className="viewProduct-TestQuantity-guide">
           <img src={InfoImage} />
-          If You Want to Test the product first , You can order it's Test Quantity
+          If You Want to Test the product first , You can order it's Test
+          Quantity
         </div>
 
-        <div className="viewProduct-description">
-          {product.description}
-        </div>
+        <div className="viewProduct-description">{product.description}</div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ViewProduct;

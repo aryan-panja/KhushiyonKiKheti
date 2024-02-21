@@ -53,7 +53,8 @@ function App() {
         />
         <Route
           path="/profile"
-          element={uid ? <Profile /> : <Navigate to="/user/login" />}
+          element={<Profile />}
+          // element={uid ? <Profile /> : <Navigate to="/user/login" />}
         />
         <Route
           path="/Home"
@@ -77,14 +78,9 @@ function App() {
         <Route path="/order" element={<Cart2 />} />
         <Route
           path="/chatbot"
-          element={uid? <Llm /> : <Navigate to="/user/login" />}
+          element={uid ? <Llm /> : <Navigate to="/user/login" />}
         />
-        <Route
-          path="/predict-crop"
-          element={
-            <PredictCrops />
-          }
-        /> 
+        <Route path="/predict-crop" element={<PredictCrops />} />
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/weather" element={<Weather />} />
       </Routes>
