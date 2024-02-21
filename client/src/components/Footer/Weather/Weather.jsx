@@ -1,8 +1,7 @@
 // Weather.js
 import React, { useContext, useEffect, useState } from 'react';
 import useUserContext from '../../../Hooks/useUserContext';
-// import dotenv from 'dotenv';
-// dotenv.config();
+
 const weatherApiKey = import.meta.env.VITE_WEATHER_API
 
 const Weather = () => {
@@ -19,7 +18,7 @@ const Weather = () => {
         console.error('Invalid or undefined location data.');
         return; 
       }
-
+      
       try {
         // Construct the API request URL
         const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location.city},${location.state},${location.country}&appid=${weatherApiKey}`;
