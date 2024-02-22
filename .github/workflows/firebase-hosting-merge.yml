@@ -18,8 +18,8 @@ jobs:
       - name: Install dependecies
         run: npm install
 
-      - name: Run Build Command
-        run: npm run build
+      - name: Run Command
+        run: npm run; npm run build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
