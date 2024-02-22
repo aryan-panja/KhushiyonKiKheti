@@ -72,7 +72,7 @@ const ViewProduct = () => {
         }),
       });
 
-      console.log('Add this product to cart')
+      console.log("Add this product to cart");
       Navigate("/order");
     }
     //   Navigate("/order");
@@ -112,7 +112,7 @@ const ViewProduct = () => {
         <div className="viewProduct-price">Price : ₹ {price}</div>
 
         <div className="viewProduct-quantity-div">
-          <p>Choose Your Desired Quantity : </p>
+          <p>Choose Your Desired Quantity</p>
           <div className="viewProduct-quantity-btn">
             <div className="viewProduct-minus" onClick={handleSubtQuantity}>
               -
