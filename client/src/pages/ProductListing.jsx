@@ -133,7 +133,7 @@ export function Product({ product }) {
     Navigate("/viewProduct", { state: { product } });
   }
   async function handleAddTocart() {
-    console.log('add to cart function is called')
+    console.log("add to cart function is called");
     // dispatch({ type: "addToCart", payload: { ...product, quantity } });
     // Navigate("/cart");
     if (uid == null) Navigate("/");
@@ -217,7 +217,7 @@ export function Product({ product }) {
 
         <p className="productListingPage-product-price">₹{price}</p>
         <p className="productListingPage-product-sellerName">
-          Sold By :{product.sellerName}
+          Sold By: {product.sellerName}
         </p>
         <p
           className="productListingPage-product-viewProduct"
