@@ -8,7 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from "../firebaseConfig.js";
 import { sendPasswordResetEmail } from "firebase/auth";
-import "../Styles/AuthPages.css"
+import "../Styles/AuthPages.css";
 
 export default function Login() {
   const { dispatch } = useUserContext();
@@ -108,9 +108,7 @@ export default function Login() {
       <form className="loginPage-div">
         <p className="loginPage-heading">
           Login
-          <p>
-            To your existing account
-          </p>
+          <p>To your existing account</p>
         </p>
         <input type="text" id="email" placeholder="Email" ref={emailRef} />
 
@@ -121,10 +119,17 @@ export default function Login() {
           ref={passwordRef}
         />
 
-        <button onClick={handleLogin} className="login-btn">Login</button>
-        <button onClick={forgotPassword} className="forgot-pwd-btn">Forgot Password</button>
+        <button onClick={handleLogin} className="login-btn">
+          Login
+        </button>
+        <button onClick={forgotPassword} className="forgot-pwd-btn">
+          Forgot Password
+        </button>
 
-        <p onClick={() => Navigate('/user/signup')} style={{ cursor: 'pointer' }}>
+        <p
+          onClick={() => Navigate("/user/signup")}
+          style={{ cursor: "pointer" }}
+        >
           Not Registed yet ? Create account here
         </p>
       </form>

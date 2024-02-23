@@ -69,6 +69,7 @@ const ViewProduct = () => {
           price: price,
           seller: product.sellerName,
           sellerID: product.seller,
+          productImage: product.productImage,
         }),
       });
 

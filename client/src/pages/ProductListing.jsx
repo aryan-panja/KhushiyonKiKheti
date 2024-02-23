@@ -195,7 +195,11 @@ export function Product({ product }) {
   return (
     <div className="productListingPage-product" key={product._id}>
       <div className="product-left-container">
-        <img src={SampleWheatImage} />
+        {product?.productImage ? (
+          <img src={product.productImage} />
+        ) : (
+          <img src={SampleWheatImage} />
+        )}
       </div>
 
       <div className="product-right-container">

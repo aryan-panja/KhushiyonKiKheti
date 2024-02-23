@@ -2,28 +2,28 @@ import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { dataBase } from "../firebaseConfig";
 import useUserContext from "../Hooks/useUserContext";
-import "../Styles/OrderPage.css"
-import Sample from "../../public/Images/Sample Wheat Image.png"
+import "../Styles/OrderPage.css";
+import Sample from "../../public/Images/Sample Wheat Image.png";
 
 const Cart2 = () => {
   const { uid } = useUserContext();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [subtotal, setSubtotal] = useState(0)
+  const [subtotal, setSubtotal] = useState(0);
 
-  console.log(subtotal)
+  console.log(subtotal);
 
   useEffect(() => {
     setSubtotal(() => {
       var total = 0;
       if (!cart?.length) return 0;
-      cart.forEach(item => {
-        if (item.price) total += JSON.parse(item.price)
+      cart.forEach((item) => {
+        if (item.price) total += JSON.parse(item.price);
       });
       return total;
-    })
-  }, [cart])
+    });
+  }, [cart]);
 
   let array = [];
 
@@ -84,45 +84,35 @@ const Cart2 = () => {
     }
   }, [uid]);
 
+  console.log(cart);
 
-  console.log(cart)
+  return loading ? (
+    "Content Loading...."
+  ) : (
+    <div className="orderPage-div">
+      <div className="orderPage-left-div">
+        {cart?.length
+          ? cart.map((item) => <Product product={item} setCart={setCart} />)
+          : "Empty Cart"}
+      </div>
 
-  return loading
-    ? "Content Loading...."
-    : (
-      <div className="orderPage-div">
-        <div className="orderPage-left-div">
-          {cart?.length ? (
-            cart.map(item => <Product product={item} setCart={setCart} />)
-          ) : (
-            "Empty Cart"
-          )}
+      <div className="orderPage-right-div">
+        <div className="orderPage-subtotal">
+          <p>Subtotal ₹ {subtotal} </p>
+          <p>For {cart?.length ? cart.length : "0"} products</p>
         </div>
 
-        <div className="orderPage-right-div">
-          <div className="orderPage-subtotal">
-            <p>Subtotal  ₹ {subtotal} </p>
-            <p>For {cart?.length ? cart.length : "0"} products</p>
-          </div>
-
-          <div className="orderPage-btn">
-            <div className="orderPage-checkout-btn">
-              Checkout
-            </div>
-            <div className="orderPage-shopping-btn">
-              Continue Shopping
-            </div>
-          </div>
+        <div className="orderPage-btn">
+          <div className="orderPage-checkout-btn">Checkout</div>
+          <div className="orderPage-shopping-btn">Continue Shopping</div>
         </div>
       </div>
-    );
-
+    </div>
+  );
 };
 
-
 function Product({ product, setCart }) {
-
-  console.log(product)
+  console.log(product);
 
   const [quantity, setQuantity] = useState(product.quantity);
   const [price, setPrice] = useState(product.price);
@@ -133,10 +123,12 @@ function Product({ product, setCart }) {
     setPrice(newPrice);
     setQuantity(newQuantity);
 
-    setCart((prev) => prev.map(prod => {
-      if (prod.p_name !== product.p_name) return prod;
-      return { ...prod, quantity: newQuantity, price: newPrice }
-    }));
+    setCart((prev) =>
+      prev.map((prod) => {
+        if (prod.p_name !== product.p_name) return prod;
+        return { ...prod, quantity: newQuantity, price: newPrice };
+      })
+    );
   }
   function handleSubtQuantity() {
     if (quantity > 1) {
@@ -145,10 +137,8 @@ function Product({ product, setCart }) {
     }
   }
 
-
   return (
     <div className="orderPage-product-div">
-
       <div className="orderPage-product-image">
         {product?.productImage ? (
           <img src={product.productImage} />
@@ -157,34 +147,25 @@ function Product({ product, setCart }) {
         )}
       </div>
 
-      <div className="orderPage-product-title">
-        {product.p_name}
-      </div>
-
+      <div className="orderPage-product-title">{product.p_name}</div>
 
       <div className="orderPage-product-quantity-div">
         <div className="orderPage-quantity-btn">
           <div className="orderPage-minus" onClick={handleSubtQuantity}>
             -
           </div>
-          <div className="orderPage-quantity">
-            {quantity}
-          </div>
+          <div className="orderPage-quantity">{quantity}</div>
           <div className="orderPage-plus" onClick={handleAddQuantity}>
             +
           </div>
         </div>
       </div>
 
-      <div className="orderPage-product-remove-btn">
-        Remove
-      </div>
+      <div className="orderPage-product-remove-btn">Remove</div>
 
-      <div className="orderPage-product-price">
-        ₹ {price}
-      </div>
+      <div className="orderPage-product-price">₹ {price}</div>
     </div>
-  )
+  );
 }
 
 export default Cart2;
