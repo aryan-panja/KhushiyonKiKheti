@@ -11,7 +11,7 @@ from flask_cors import cross_origin
 
 # Configure Flask app
 app = Flask(__name__)
-CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+CORS(app)
 
 # Set up the generative AI model
 genai.configure(api_key="AIzaSyBFuup2R6zanwAWnrQ6nKTsvuiTUzTm_0o")
@@ -50,13 +50,13 @@ def process_user_input():
 
     # Add CORS headers
     response = jsonify(response_data)
-    response.headers.add("Access-Control-Allow-Origin", "http://localhost:5173")
+    response.headers.add("Access-Control-Allow-Origin", "https://kissan-a96e9.web.app")
     response.headers.add("Access-Control-Allow-Credentials", "true")
 
     return response
 
 # Load your pre-trained ML model
-with open('D:\ML DATASET\crop_suggestion\Model\crop_suggestion.pkl', 'rb') as model_file:
+with open('./crop_suggestion.pkl', 'rb') as model_file:
     ml_model = pickle.load(model_file)
 
 # Route to handle ML model predictions
@@ -85,4 +85,4 @@ def predict_ml():
     return jsonify({"mlPrediction": ml_prediction})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002,host='0.0.0.0')
