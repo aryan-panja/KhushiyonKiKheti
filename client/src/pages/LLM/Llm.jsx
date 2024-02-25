@@ -20,7 +20,7 @@ function App() {
       " " +
       ` Hello My name is Aryan Panja. And i live in ${location.city} in ${location.state} in ${location.country}. And right now the temperature is ${temperature} degree celcius and the soil is ${location.state} soil. Also predicted price to sell my crop. Also if ${mlPrediction} is not undefined then this is the predicted crop given by the ml predictor. Also tell me some more crops that i can grow instead of this crop. And tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
     try {
-      const response = await fetch("https://cors-prod.spotifie.workers.dev/?http://20.193.153.81/process_input", {
+      const response = await fetch("https://cors-prod.spotifie.workers.dev/https://aryanpanja.tech/process_input", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
