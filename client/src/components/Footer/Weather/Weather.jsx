@@ -2,7 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import useUserContext from "../../../Hooks/useUserContext";
 
-const weatherApiKey = import.meta.env.VITE_WEATHER_API;
+// const weatherApiKey = import.meta.env.VITE_WEATHER_API;
+const weatherApiKey = "c533fccf081b9e26f4d7813cbb1b0f66";
 
 const Weather = () => {
   const { location } = useUserContext();
