@@ -20,14 +20,17 @@ function App() {
       " " +
       ` Hello My name is Aryan Panja. And i live in ${location.city} in ${location.state} in ${location.country}. And right now the temperature is ${temperature} degree celcius and the soil is ${location.state} soil. Also predicted price to sell my crop. Also if ${mlPrediction} is not undefined then this is the predicted crop given by the ml predictor. Also tell me some more crops that i can grow instead of this crop. And tell me the good ways to grow this crop so that i got good yield and there is no water wasteage and ground water remains intact. Also tell me the best fertilizers to use for this crop. And also tell me the best pesticides to use for this crop. And also tell me the best way to store this crop. And also tell me the best way to sell this crop. And also tell me the best way to transport this crop. If all of this above data helps. Then i will be very happy to use this service again.`;
     try {
-      const response = await fetch("https://cors-prod.spotifie.workers.dev/?http://20.193.153.81/process_input", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // 'Access-Control-Allow-Origin': '*',  // Use the actual domain in production
-        },
-        body: JSON.stringify({ Combined_Input }),
-      });
+      const response = await fetch(
+        "https://cors-prod.spotifie.workers.dev/?http://20.193.153.81/process_input",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Access-Control-Allow-Origin': '*',  // Use the actual domain in production
+          },
+          body: JSON.stringify({ Combined_Input }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch response from server");
@@ -72,20 +75,32 @@ function App() {
       <h1 className="LLM-h">किसान मित्र</h1>
       <div className="LLM-form">
         <input
-        className="LLM-input"
+          className="LLM-input"
           type="text"
           id="userInput"
           placeholder="Type your message..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
         />
-        <button className="LLM-submit" onClick={handleSendMessage}>Submit</button>
-        <button className="LLM-speak" onClick={speakResponse} disabled={speakButtonDisabled}>
-          Speak Response
-        </button>
-        <button className="LLM-stop" onClick={stopSpeech} disabled={stopButtonDisabled}>
-          Stop Speech
-        </button>
+        <div className="BTNS">
+          <button className="LLM-submit" onClick={handleSendMessage}>
+            Submit
+          </button>
+          <button
+            className="LLM-speak"
+            onClick={speakResponse}
+            disabled={speakButtonDisabled}
+          >
+            Speak Response
+          </button>
+          <button
+            className="LLM-stop"
+            onClick={stopSpeech}
+            disabled={stopButtonDisabled}
+          >
+            Stop Speech
+          </button>
+        </div>
       </div>
 
       <div style={{ margin: "1rem" }}>
