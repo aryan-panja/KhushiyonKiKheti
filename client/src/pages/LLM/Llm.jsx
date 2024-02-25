@@ -68,22 +68,22 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ margin: "1rem" }}>
-      <h1>किसान मित्र</h1>
-      <div>
-        <label htmlFor="userInput">Your message:</label>
+    <div style={{ margin: "1rem" }}>
+      <h1 className="LLM-h">किसान मित्र</h1>
+      <div className="LLM-form">
         <input
+        className="LLM-input"
           type="text"
           id="userInput"
           placeholder="Type your message..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Submit</button>
-        <button onClick={speakResponse} disabled={speakButtonDisabled}>
+        <button className="LLM-submit" onClick={handleSendMessage}>Submit</button>
+        <button className="LLM-speak" onClick={speakResponse} disabled={speakButtonDisabled}>
           Speak Response
         </button>
-        <button onClick={stopSpeech} disabled={stopButtonDisabled}>
+        <button className="LLM-stop" onClick={stopSpeech} disabled={stopButtonDisabled}>
           Stop Speech
         </button>
       </div>

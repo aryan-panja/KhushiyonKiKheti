@@ -60,6 +60,9 @@ with open('D:\ML DATASET\crop_suggestion\Model\crop_suggestion.pkl', 'rb') as mo
     ml_model = pickle.load(model_file)
 
 # Route to handle ML model predictions
+@app.get('/')
+def home():
+    return "Hello World"    
 @app.route('/predict_ml', methods=['POST'])
 def predict_ml():
     data = request.json
