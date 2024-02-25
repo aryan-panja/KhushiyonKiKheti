@@ -30,7 +30,9 @@ Our Solution for the GDSC Solution Challenge aims to help solve the problems far
    * `npm i`
    * `npm run dev`
    * `cd ../flask`
-   *
+   * `source venv/bin/activate`
+   * `pip install -r requirements.txt`
+   * `python3 app.py`
 
 ## Contributors  
 
