@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Capriola&family=Roboto&display=swap");
+
 .productListingPage-div {
   margin-bottom: 12vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Capriola", sans-serif;
 }
 
 .productListingPage-container {
@@ -23,19 +30,20 @@
 }
 
 .product-left-container {
+  font-family: "Capriola", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.product-left-container>img {
+.product-left-container > img {
   height: 20vh;
 }
 
 .productListingPage-product-sellerName,
 .productListingPage-product-description {
-  color: rgb(153, 151, 151);
+  color: black;
   font-size: 16px;
   overflow: hidden;
 }
@@ -46,7 +54,8 @@
 
 .productListingPage-product-title {
   font-size: 26px;
-  margin: 0.8vh 0;
+  color: black;
+  /* margin: 0.8vh 0; */
 }
 
 .productListingPage-product-quantity {
@@ -64,22 +73,27 @@
 }
 
 .productListingPage-product-price {
-  margin-top: 2vh;
+  margin-top: 1vh;
+  font-size: larger;
+  margin-bottom: 1vh;
 }
 
 .productListingPage-product-viewProduct {
   cursor: pointer;
   margin-top: 2vh;
-  border: 0.5px solid #80ED99;
+  border: 0.5px solid #80ed99;
   text-align: center;
   padding: 0.5vh 0;
-  border-radius: 4px;
-  color: #80ED99;
+  border-radius: 10px;
+  /* color: #80ed99;
+   */
+  background-color: #80ed99;
   transition: all 0.2s ease-out;
+  color: black;
 }
 
 .productListingPage-product-viewProduct:hover {
-  background-color: #80ED99;
+  background-color: #80ed99;
   color: white;
 }
 
@@ -103,9 +117,7 @@
   display: none;
 }
 
-
-@media(max-width : 500px) {
-
+@media (max-width: 500px) {
   .productListingPage-container {
     background-color: white;
     margin: 0px;
@@ -114,7 +126,7 @@
   }
 
   .productListingPage-product {
-    width: 100vw;
+    width: 90vw;
     box-sizing: border-box;
     height: 25vh;
     flex-direction: row;
@@ -123,13 +135,15 @@
     margin: 0;
     padding: 0;
     gap: 2vw;
+    border-radius: 0px;
+    border-bottom: 2px solid black;
   }
 
   .product-left-container {
     width: 30vw;
   }
 
-  .product-left-container>img {
+  .product-left-container > img {
     width: 30vw;
     object-fit: contain;
   }

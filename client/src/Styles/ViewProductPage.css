@@ -10,7 +10,8 @@
   justify-content: center;
 }
 
-.viewProductPage-left-div>div>img {
+.viewProductPage-left-div > div > img {
+  margin-bottom: 10px;
   width: 20vw;
 }
 
@@ -35,7 +36,7 @@
   gap: 2vw;
 }
 
-.viewProduct-quantity-div>p {
+.viewProduct-quantity-div > p {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,14 +49,18 @@
   justify-content: space-around;
   padding: 1vh 1vw;
   font-size: 20px;
+  border-radius: 20px;
 }
 
 .viewProduct-plus,
 .viewProduct-minus {
   text-align: center;
   cursor: pointer;
-  width: 4vw;
-
+  width: 6vw;
+  height: 6vw;
+  /* border: 1px solid black; */
+  /* background-color: aquamarine; */
+  border-radius: 50%;
 }
 
 .viewProduct-cart-btn {
@@ -63,15 +68,14 @@
   gap: 2vw;
   margin-top: 4vh;
   margin-bottom: 2vh;
-
 }
 
 .viewProduct-addToCart-btn {
   cursor: pointer;
-  border: 0.5px solid #80ED99;
+  background-color: #80ed99;
   padding: 1vh 0;
-  border-radius: 4px;
-  color: #80ED99;
+  border-radius: 10px;
+  color: black;
   width: 10vw;
   display: flex;
   align-items: center;
@@ -80,18 +84,18 @@
 }
 
 .viewProduct-addToCart-btn:hover {
-  background-color: #80ED99;
+  background-color: #80ed99;
   color: white;
 }
 
 .viewProduct-addTestToCart-btn {
   width: 14vw;
   cursor: pointer;
-  border: 0.5px solid rgb(196, 3, 3);
+  background-color: rgb(255, 134, 134);
   text-align: center;
   padding: 1vh 0;
-  border-radius: 4px;
-  color: rgb(196, 3, 3);
+  border-radius: 10px;
+  color: black;
   transition: all 0.2s ease-out;
 }
 
@@ -108,12 +112,12 @@
   align-items: center;
 }
 
-.viewProduct-TestQuantity-guide>img {
+.viewProduct-TestQuantity-guide > img {
   height: 3vh;
   margin-right: 0.5vw;
 }
 
-@media (max-width : 500px) {
+@media (max-width: 500px) {
   .viewProductPage-div {
     flex-direction: column;
     align-items: center;
@@ -128,7 +132,7 @@
     margin-bottom: 1vh;
   }
 
-  .viewProductPage-left-div>div>img {
+  .viewProductPage-left-div > div > img {
     width: 60vw;
     height: 20vh;
     object-fit: contain;
@@ -148,7 +152,7 @@
     align-items: center;
   }
 
-  .viewProduct-cart-btn>div {
+  .viewProduct-cart-btn > div {
     width: 80vw;
   }
 
