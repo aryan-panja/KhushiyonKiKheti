@@ -41,7 +41,7 @@ const PredictCrops = () => {
 
   const handlePredict = async () => {
     // Replace with your Flask server URL
-    const serverUrl = "https://20.193.153.81/";
+    const serverUrl = "https://aryanpanja.tech/";
 
     // Get ML prediction
     try {

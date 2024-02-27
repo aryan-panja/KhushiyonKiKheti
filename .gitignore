@@ -1,3 +1,4 @@
 server/.env
 client/src/firebaseConfig.js
 sever/node_modules
+flask
