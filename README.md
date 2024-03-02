@@ -5,7 +5,7 @@ Our Solution for the GDSC Solution Challenge aims to help solve the problems far
 ## Steps to use, Khushiyon Ki Kheti
 
 1. Visit our Website at: https://kissan-a96e9.web.app/
-2. Create an account
+2. Create an account (Please Create a **Seller Account** to use all the features)
 3. That's it, Now you can navigate according to your need :)
 
 ## Technologies used:
@@ -33,6 +33,7 @@ Our Solution for the GDSC Solution Challenge aims to help solve the problems far
    * `source venv/bin/activate`
    * `pip install -r requirements.txt`
    * `python3 app.py`
+   (While Signing Up, Please Create a **Seller Account** to use all the features)
 
 ## Contributors  
 
