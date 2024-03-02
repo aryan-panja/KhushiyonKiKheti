@@ -33,7 +33,8 @@ Our Solution for the GDSC Solution Challenge aims to help solve the problems far
    * `source venv/bin/activate`
    * `pip install -r requirements.txt`
    * `python3 app.py`
-   (While Signing Up, Please Create a **Seller Account** to use all the features)
+ 
+(While Signing Up, Please Create a **Seller Account** to use all the features)
 
 ## Contributors  
 
