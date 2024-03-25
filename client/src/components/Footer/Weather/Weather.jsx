@@ -2,8 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useUserContext from "../../../Hooks/useUserContext";
 
-// const weatherApiKey = import.meta.env.VITE_WEATHER_API;
-const weatherApiKey = "c533fccf081b9e26f4d7813cbb1b0f66";
+const weatherApiKey = import.meta.env.VITE_WEATHER_API;
 
 const Weather = () => {
   const { location } = useUserContext();
@@ -14,16 +13,9 @@ const Weather = () => {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      if (!location || !location.city || !location.state || !location.country) {
-        console.error("Invalid or undefined location data.");
-        return;
-      }
 
       try {
         // Construct the API request URL
-
-        // const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location.city},${location.state},${location.country}&appid=${weatherApiKey}`;
-        // console.log(apiUrl);
 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${weatherApiKey}`;
 
