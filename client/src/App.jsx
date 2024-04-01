@@ -68,8 +68,14 @@ function App() {
           element={<AddProductPage />}
         />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/cart" element={<ProductListing />} />
-        <Route path="/order" element={<Cart2 />} />
+        <Route
+          path="/cart"
+          element={uid ? <ProductListing /> : <Navigate to="/user/login" />}
+        />
+        <Route
+          path="/order"
+          element={uid ? <Cart2 /> : <Navigate to="/user/login" />}
+        />
         {uid ? (
           <Route path="/user/profile" element={<Profile />} />
         ) : (
