@@ -10,15 +10,15 @@ const Footer = () => {
       <div className="footer-title">
         <img src={Icon} />
         <p className="footer-title-text">
-          <div className="footerTitle">Khushiyon Ki Kheti</div>
+          <div className="footerTitle">BookZone</div>
           <p className="footer-title-desc">
-            An Initiative to help farmers grow
+          An Initiative to help readers get their favourite books
           </p>
         </p>
       </div>
       <div className="footer-info">
-        {<GeolocationComponent />}
-        {<Weather />}
+        {/* {<GeolocationComponent />}
+        {<Weather />} */}
       </div>
     </div>
   );

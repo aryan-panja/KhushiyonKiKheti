@@ -39,9 +39,9 @@ const Navbar = () => {
           <img src={Icon} />
         </Link>
         <Link to="/" className="navbar-title-text">
-          Khushiyon Ki Kheti
+          BookZone
           <p className="navbar-title-desc">
-            An Initiative to help farmers grow
+            An Initiative to help readers get their favourite books
           </p>
         </Link>
       </div>
@@ -53,13 +53,13 @@ const Navbar = () => {
       <div className="navbar-links" ref={navlinksRef}>
         {/* <Link to="/">Home</Link> */}
         <Link to="/cart">Shopping Page</Link>
-        <Link to="/chatbot">किसान मित्र</Link>
+        <Link to="/chatbot">Book Assistant</Link>
         <Link to="/order">Cart</Link>
         <Link to="/user/profile">Profile</Link>
 
         {uid && (
           <>
-            <Link to="/predict-crop">Predict Crop</Link>
+            {/* <Link to="/predict-crop">Predict Crop</Link> */}
             <Link to="/add-product">Add Product</Link>
           </>
         )}

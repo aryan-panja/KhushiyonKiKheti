@@ -11,9 +11,9 @@ export default function AddProductPage() {
   const titleRef = useRef();
   const descRef = useRef();
   const priceRef = useRef();
-  const minquantityref = useRef();
-  const testQuantityRef = useRef();
-  const testPriceRef = useRef();
+  const minquantityref = useRef(23); // Default value for minimum quantity
+  const testQuantityRef = useRef(23); // Default value for test quantity
+  const testPriceRef = useRef(23); // Default value for price for test quantity
   const totalQuantityRef = useRef();
   const Navigate = useNavigate();
   //   const { user, token } = useUserContext();
@@ -48,9 +48,9 @@ export default function AddProductPage() {
       title: data.title,
       description: data.description,
       price: data.price,
-      testQuantity: data.testQuantity,
-      testQuantityPrice: data.testQuantityPrice,
-      minQuantity: data.minQuantity,
+      testQuantity: 2,
+      testQuantityPrice: 2,
+      minQuantity: 2,
       seller: uid,
       totalQuantity: data.totalQuantity,
       sellerName: userName,
@@ -79,25 +79,25 @@ export default function AddProductPage() {
         <input type="text" id="description" ref={totalQuantityRef} />
       </div>
 
-      <div className="addProductPage-minQuantity">
+      {/* <div className="addProductPage-minQuantity">
         <p className="heading">Minimum Quantity in KG</p>
         <input type="Number" id="minQuantity" ref={minquantityref} />
-      </div>
+      </div> */}
 
       <div className="addProductPage-price">
         <p className="heading">Price for Min. Quantity</p>
         <input type="Number" id="price" ref={priceRef} />
       </div>
 
-      <div className="addProductPage-testQuantity">
+      {/* <div className="addProductPage-testQuantity">
         <p className="heading">Test Quantity in KG</p>
         <input type="Number" id="minQuantity" ref={testQuantityRef} />
-      </div>
+      </div> */}
 
-      <div className="addProductPage-price">
+      {/* <div className="addProductPage-price">
         <p className="heading">Price for Test Quantity</p>
         <input type="Number" id="price" ref={testPriceRef} />
-      </div>
+      </div> */}
 
       <div className="addProductPage-price">
         <p className="heading">Sample Photo of the Product</p>
@@ -109,3 +109,4 @@ export default function AddProductPage() {
     </div>
   );
 }
+

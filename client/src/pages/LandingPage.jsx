@@ -12,7 +12,7 @@ export default function LandingPage() {
         <div className="landingPage-routes-headings">
           Hi there 👋,
           <p className="landingPage-headings-desc-1">
-            I am Kishan your Farming Assitant
+            I am Kishan your Assitant
           </p>
           <p className="landingPage-headings-desc">
             How can I help you today ?
@@ -20,7 +20,7 @@ export default function LandingPage() {
         </div>
         <div className="landingPage-routes">
           <Link to="/chatbot" className="landingPage-chatbot-route landingPage-route" onClick={() => Navigate('/')}>
-            Kissan Mitra (Chat Bot)
+            Book Assistant (AI Chat Bot)
           </Link>
 
           <Link to="/cart" className="landingPage-purchase-route landingPage-route" onClick={() => Navigate('/')}>
@@ -31,15 +31,15 @@ export default function LandingPage() {
             className="landingPage-sellCrops-route landingPage-route"
             onClick={() => Navigate("/")}
           >
-            Sell Crops
+            Sell Books
           </Link>
 
-          <Link to="/predict-crop"
+          {/* <Link to="/predict-crop"
             className="landingPage-whattosow-route landingPage-route"
             onClick={() => Navigate("/")}
           >
             Help me decide what to sow ?
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

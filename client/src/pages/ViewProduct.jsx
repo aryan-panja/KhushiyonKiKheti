@@ -129,19 +129,19 @@ const ViewProduct = () => {
             Add To Cart
           </div>
 
-          <div
+          {/* <div
             className="viewProduct-addTestToCart-btn"
             onClick={handleTestQuantity}
           >
             Test {product.testQuantity} Kg for ₹{product.testQuantityPrice}
-          </div>
+          </div> */}
         </div>
 
-        <div className="viewProduct-TestQuantity-guide">
+        {/* <div className="viewProduct-TestQuantity-guide">
           <img src={InfoImage} />
           If You Want to Test the product first , You can order it's Test
           Quantity
-        </div>
+        </div> */}
 
         <div className="viewProduct-description">{product.description}</div>
       </div>
