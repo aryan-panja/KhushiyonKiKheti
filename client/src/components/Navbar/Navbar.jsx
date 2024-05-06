@@ -1,5 +1,6 @@
 //Images
-import Icon from "../../../public/Images/Icon.png"
+// import Icon from "../../../public/Images/Icon.png"
+import Icon from "../../../public/Images/BookZone.png"
 import UserImage from "../../../public/Images/user image.webp"
 
 // Components

@@ -23,6 +23,7 @@ import {
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
 import SampleWheatImage from "../../public/Images/Sample Wheat Image.png";
+import sampleBook from "../../public/Images/sampleBook.jpeg";
 import InfoImage from "../../public/Images/info.png";
 
 import "../Styles/ViewProductPage.css";
@@ -101,7 +102,7 @@ const ViewProduct = () => {
           {product?.productImage ? (
             <img src={product.productImage} />
           ) : (
-            <img src={SampleWheatImage} />
+            <img src={sampleBook} />
           )}
         </div>
       </div>

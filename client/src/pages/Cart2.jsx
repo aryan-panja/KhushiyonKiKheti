@@ -4,6 +4,8 @@ import { dataBase } from "../firebaseConfig";
 import useUserContext from "../Hooks/useUserContext";
 import "../Styles/OrderPage.css";
 import Sample from "../../public/Images/Sample Wheat Image.png";
+import sampleBook from "../../public/Images/sampleBook.jpeg";
+
 
 const Cart2 = () => {
   const { uid } = useUserContext();
@@ -143,7 +145,7 @@ function Product({ product, setCart }) {
         {product?.productImage ? (
           <img src={product.productImage} />
         ) : (
-          <img src={Sample} />
+          <img src={sampleBook} />
         )}
       </div>
 

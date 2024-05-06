@@ -1,7 +1,8 @@
 import React from "react";
 import GeolocationComponent from "./GeoLocation/GeoLocationComponent";
 import Weather from "./Weather/Weather";
-import Icon from "../../../public/Images/Icon.png";
+// import Icon from "../../../public/Images/Icon.png";
+import Icon from "../../../public/Images/BookZone.png"
 import "./index.css";
 
 const Footer = () => {

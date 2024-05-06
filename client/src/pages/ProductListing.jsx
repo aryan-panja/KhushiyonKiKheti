@@ -22,6 +22,7 @@ import {
 import { dataBase } from "../firebaseConfig";
 import { userContext } from "../context/userContext";
 import SampleWheatImage from "../../public/Images/Sample Wheat Image.png";
+import sampleBook from "../../public/Images/sampleBook.jpeg";
 
 export default function ProductListing() {
   const [isLoading, setIsLoading] = useState(true);
@@ -198,7 +199,7 @@ export function Product({ product }) {
         {product?.productImage ? (
           <img src={product.productImage} />
         ) : (
-          <img src={SampleWheatImage} />
+          <img src={sampleBook} />
         )}
       </div>
 
